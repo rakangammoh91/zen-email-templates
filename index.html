@@ -148,34 +148,63 @@
   </div>
 
   <h2 style="text-align:center;font-weight:400;font-size:20px;color:#1c1d1d;margin:64px 0 8px;letter-spacing:-0.3px;">Abandoned Checkout Flow</h2>
-  <div style="text-align:center;font-size:12px;color:#9a9a9a;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;">v1 · 4 emails · single path · T+1h → T+72h</div>
-  <div style="text-align:center;font-size:12px;color:#7c6f50;letter-spacing:0.5px;margin-bottom:24px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6;">
-    9-fig DTC escalation curve: nudge → hero review → friction kill → discount. No SMS (WhatsApp concierge handles high-touch). SAVE10 code only fires on email #4 after 72h silence — protects margin and pre-existing buyers.
+  <div style="text-align:center;font-size:12px;color:#9a9a9a;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;">v2 · 4 emails · no photo repetition · emotional arc · T+1h → T+72h</div>
+  <div style="text-align:center;font-size:12px;color:#7c6f50;letter-spacing:0.5px;margin-bottom:24px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6;">
+    v2 rebuild: dynamic cart → social detection fear → founder letter → generous close. Each email uses a <b>different visual hero</b> (dynamic product / typography / founder signature / code+gift icon). Zero duplicate imagery. Saudi Hijazi voice throughout. <b>No return mentions</b> — only ١٠٠٪ شعر طبيعي guarantee. Built for highest CTR.
   </div>
   <div class="grid">
+    <a class="card" href="/templates/ac-1-v2-final.html">
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Dynamic Cart</span>
+      <h3>AC #1 · كنتِ على بُعد ٤٥ ثانية</h3>
+      <p>T+1h soft nudge. Klaviyo <code style="font-size:10px;color:#7c6f50;">{% for item in event.extra.line_items %}</code> pulls actual abandoned product with image + title + qty. Clickable hero → checkout. Trust row (١٠٠٪ شعر طبيعي · +١٥,٠٠٠ · شحن مجاني — NO return). ريم . جدة micro-review. 24h price-guarantee PS.</p>
+      <div class="meta">Klaviyo ID · SDWqtU · T+1h</div>
+    </a>
+    <a class="card" href="/templates/ac-2-v2-final.html">
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Social Detection Fear</span>
+      <h3>AC #2 · خايفة الناس يعرفون؟</h3>
+      <p>T+24h objection crusher. <b>Typography-only hero</b> — no product photo. Small ★★★★★ · ٤.٨ · +١٥,٠٠٠. Black quote card names the real fear «راح يبان إنه مو شعري؟». Long testimonial from لمى . الرياض (wedding day · mother didn't notice). Closer: «إذا أمّكِ ما لاحظت، مين راح يلاحظ؟»</p>
+      <div class="meta">Klaviyo ID · SyuE4H · T+24h</div>
+    </a>
+    <a class="card" href="/templates/ac-3-v2-final.html">
+      <span class="badge" style="background:#25D366;color:#ffffff;">★ v2 · Founder Letter</span>
+      <h3>AC #3 · رسالة صغيرة · سهام</h3>
+      <p>T+48h founder intimacy. <b>Typographic signature header</b> (سهام · 52px light italic) — no product. From-name switches to «سهام من زن هير». Origin story (٣ سنين ago · مقابلة بنت · ٤٠ عيّنة مرفوضة). Wordplay مو شعر إنه شعور. PRIMARY green WhatsApp CTA «💬 أكلّم سهام مباشرة». Personal voice = highest T+48 CTR lever.</p>
+      <div class="meta">Klaviyo ID · RPZR2T · T+48h · WhatsApp primary</div>
+    </a>
+    <a class="card" href="/templates/ac-4-v2-final.html">
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Generous Close · SAVE10</span>
+      <h3>AC #4 · قرّرتِ، أو لا. هذا لكِ.</h3>
+      <p>T+72h paradox-of-generosity close (not desperate urgency). <b>NB2-generated line-drawn gift icon</b> + dashed SAVE10 code box. Black «استخدمي كودي» primary + «أو» divider + outlined green WhatsApp secondary. <b>TEXT-only</b> cart summary (no image — distinct from AC#1). PS: «ما نحب الضغط، وما نحسب إنه يشتغل.»</p>
+      <div class="meta">Klaviyo ID · XWHyDr · T+72h · SAVE10 + gift</div>
+    </a>
+  </div>
+
+  <!-- v1 archive (kept for comparison, not wired to flow) -->
+  <div style="text-align:center;font-size:11px;color:#9a9a9a;letter-spacing:1px;margin:48px 0 12px;text-transform:uppercase;">v1 Archive · Not Live</div>
+  <div class="grid" style="opacity:0.55;">
     <a class="card" href="/templates/ac-1-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v1 · The Nudge</span>
+      <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #1 · شي نسيتيه؟</h3>
-      <p>T+1h reminder. Cart-saved reassurance, static product card (Klaviyo dynamic loop ready), single black CTA «أكمل طلبي». Trust badges + one micro-review. NO discount.</p>
-      <div class="meta">Klaviyo ID · US56fq · T+1h</div>
+      <p>Original v1: static product card, cart-saved reassurance. Replaced by v2 SDWqtU.</p>
+      <div class="meta">Klaviyo ID · US56fq · archived</div>
     </a>
     <a class="card" href="/templates/ac-2-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v1 · Objection Crusher</span>
+      <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #2 · ٤.٨ ★ من ١٥,٠٠٠ تقييم</h3>
-      <p>T+24h social proof. Aggregate rating hero (56px ★★★★★ + 4.8), long-form review from ريم. جدة about wedding reveal. Single black CTA, inline WhatsApp text-link. NO discount.</p>
-      <div class="meta">Klaviyo ID · TshYgu · T+24h</div>
+      <p>Original v1: rating hero + ريم. جدة review. Replaced by v2 SyuE4H.</p>
+      <div class="meta">Klaviyo ID · TshYgu · archived</div>
     </a>
     <a class="card" href="/templates/ac-3-final.html">
-      <span class="badge" style="background:#25D366;color:#ffffff;">★ v1 · Friction Kill</span>
+      <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #3 · ما فيه أيّ مخاطرة</h3>
-      <p>T+48h risk reversal. 3-card reassurance row (free ship · 14-day return · secure pay). PRIMARY green #25D366 WhatsApp CTA to expert, secondary text-link for checkout. NO discount.</p>
-      <div class="meta">Klaviyo ID · SvmaiD · T+48h · WhatsApp primary</div>
+      <p>Original v1: 3-card friction-kill (incl. retracted 14-day return). Replaced by v2 RPZR2T.</p>
+      <div class="meta">Klaviyo ID · SvmaiD · archived</div>
     </a>
     <a class="card" href="/templates/ac-4-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v1 · Last Call · SAVE10</span>
-      <h3>AC #4 · ٢٤ ساعة · ١٠٪ + هدية مجانية</h3>
-      <p>T+72h final push. Deadline pill, dashed SAVE10 code box, mystery gift worth ٧٠ ريال. Black «أستخدم كودي» primary + «أو» divider + green WhatsApp secondary. 24h expiry.</p>
-      <div class="meta">Klaviyo ID · ViwC4y · T+72h · SAVE10 + gift</div>
+      <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
+      <h3>AC #4 · ٢٤ ساعة · ١٠٪ + هدية</h3>
+      <p>Original v1: urgency-first last-call. Replaced by v2 XWHyDr (generosity-first close).</p>
+      <div class="meta">Klaviyo ID · ViwC4y · archived</div>
     </a>
   </div>
 
