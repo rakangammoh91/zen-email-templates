@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Template name -> Klaviyo ID registry. Every entry tagged with language. See LANGUAGE-SEPARATION.md.",
-    "last_updated": "2026-04-16T10:07Z",
+    "last_updated": "2026-04-16T11:30Z",
     "klaviyo_account_id": "WARVNh",
     "klaviyo_edit_url_pattern": "https://www.klaviyo.com/email-editor/{id}/edit",
     "currency": "SAR",
@@ -124,6 +124,31 @@
       "high_definition": "Placed Order sum alltime >2000 SAR",
       "_created": "2026-04-16",
       "_note": "VjjgUC was broken (used dead metric Xf2suC) — PATCHed 2026-04-16 to use RFkPcF sum. LV tiers sum to 5,068 = total lifetime buyers in account."
+    },
+    "product_cohorts": {
+      "_meta": {
+        "created": "2026-04-16",
+        "metric_id": "XFDwkK",
+        "metric_name": "Ordered Product (Shopify)",
+        "filter_property": "ProductID",
+        "purpose": "Per-product buyer cohorts for ty-6 cross-sell, win-back, product-launch targeting",
+        "api_note": "metric_filters on ProductID (flat scalar) works. metric_filters on Items (array) does NOT work — Klaviyo segment engine cannot traverse arrays. Always use XFDwkK (per-line-item event) for product filtering, never RFkPcF (per-order event with Items array).",
+        "product_catalog_2026_04_16": {
+          "ponytail": {"product_id": "6926370701357", "sku_prefix": "BWRK20PT", "name_ar": "اكستنشن ذيل حصان شعر طبيعي 100%", "role": "premium upsell · ty-6 cross-sell hero"},
+          "clip_in":  {"product_id": "6926371979309", "sku_prefix": "LS209CLP", "name_ar": "اكستنشن كلبسات المطور 9 قطع", "role": "main volume product · 1711 AR buyers"},
+          "tape_in":  {"product_id": "6926374633517", "sku_prefix": "US18PS",   "name_ar": "اكستنشن تيب المخفي", "role": "niche / hidden extensions"}
+        }
+      },
+      "ar": {
+        "bought_ponytail":  {"id": "U7dEVT", "name": "AR | Bought Ponytail",              "product_id": "6926370701357", "profile_count": 75,   "purpose": "Exclusion set for AR ty-6 ponytail cross-sell"},
+        "bought_clip_in":   {"id": "Y9PXSG", "name": "AR | Bought Clip-in Extensions",   "product_id": "6926371979309", "profile_count": 1711, "purpose": "Primary AR ty-6 target cohort"},
+        "bought_tape_in":   {"id": "XsbEUF", "name": "AR | Bought Tape-in Extensions",   "product_id": "6926374633517", "profile_count": 98,   "purpose": "Niche cohort · cross-sell to clip-in"}
+      },
+      "en": {
+        "bought_ponytail":  {"id": "YwXft9", "name": "EN | Bought Ponytail",              "product_id": "6926370701357", "profile_count": 7,   "purpose": "Exclusion set for EN ty-6 ponytail cross-sell"},
+        "bought_clip_in":   {"id": "Smq3Ch", "name": "EN | Bought Clip-in Extensions",   "product_id": "6926371979309", "profile_count": 242, "purpose": "Primary EN ty-6 target cohort"},
+        "bought_tape_in":   {"id": "RHyJTk", "name": "EN | Bought Tape-in Extensions",   "product_id": "6926374633517", "profile_count": 5,   "purpose": "Niche cohort · cross-sell to clip-in"}
+      }
     },
     "segments_needed": {
       "_status_2026_04_16": "RESOLVED. AR + EN buyers 90d built via POST /api/segments at IDs US9JzM + W3yztD. Engagement gate + suppression stack intentionally dropped (applied at campaign send time instead).",
