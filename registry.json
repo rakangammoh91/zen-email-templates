@@ -83,6 +83,10 @@
     "ar": {
       "buyers_90d": "US9JzM",
       "buyers_90d_profile_count": 384,
+      "buyers_365d": "Wid63W",
+      "buyers_365d_profile_count": 1471,
+      "buyers_365d_definition": "$locale_language=ar AND Placed Order (RFkPcF) count last 365d >0",
+      "buyers_365d_purpose": "Annual reactivation · Ramadan/Eid/year-end promos · broad re-engagement",
       "repeat_buyers": "X6z9Ku",
       "repeat_buyers_profile_count": 683,
       "repeat_buyers_definition": "$locale_language=ar AND Placed Order count alltime ≥2",
@@ -101,6 +105,10 @@
     "en": {
       "buyers_90d": "W3yztD",
       "buyers_90d_profile_count": 53,
+      "buyers_365d": "XVnsRD",
+      "buyers_365d_profile_count": 251,
+      "buyers_365d_definition": "$locale_language=en AND Placed Order (RFkPcF) count last 365d >0",
+      "buyers_365d_purpose": "Annual reactivation (EN mirror) · broad re-engagement",
       "repeat_buyers": "WViD4G",
       "repeat_buyers_profile_count": 120,
       "one_time_buyers_60d_plus": "WQFnHi",
