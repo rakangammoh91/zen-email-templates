@@ -1,2 +1,16 @@
 tmp_*.json
 *.tmp
+
+# dependencies
+node_modules/
+
+# env
+.env
+.env.*
+
+# Claude Code local workspace config (user-specific)
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -148,62 +148,90 @@
   </div>
 
   <h2 style="text-align:center;font-weight:400;font-size:20px;color:#1c1d1d;margin:64px 0 8px;letter-spacing:-0.3px;">Abandoned Checkout Flow</h2>
-  <div style="text-align:center;font-size:12px;color:#9a9a9a;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;">v2 · 4 emails · no photo repetition · emotional arc · T+1h → T+72h</div>
-  <div style="text-align:center;font-size:12px;color:#7c6f50;letter-spacing:0.5px;margin-bottom:24px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6;">
-    v2 rebuild: dynamic cart → social detection fear → founder letter → generous close. Each email uses a <b>different visual hero</b> (dynamic product / typography / founder signature / code+gift icon). Zero duplicate imagery. Saudi Hijazi voice throughout. <b>No return mentions</b> — only ١٠٠٪ شعر طبيعي guarantee. Built for highest CTR.
+  <div style="text-align:center;font-size:12px;color:#9a9a9a;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;">v2.1 · 4 emails · CTA above the fold · zero static fallback imagery · T+1h → T+72h</div>
+  <div style="text-align:center;font-size:12px;color:#7c6f50;letter-spacing:0.5px;margin-bottom:24px;max-width:720px;margin-left:auto;margin-right:auto;line-height:1.6;">
+    v2.1 restructure: <b>primary CTA now in the first fold on every email</b>. AC #1 cart block uses <code style="font-size:10px;color:#1c1d1d;">{% if item.image_url %}</code> conditional — <b>no generic product collage fallback</b>; if there's no image it renders text-only. AC #4 pairs gift icon + SAVE10 dashed code + black CTA as one tight above-fold unit. Saudi Hijazi voice throughout. <b>No return mentions</b> — only ١٠٠٪ شعر طبيعي guarantee.
   </div>
   <div class="grid">
     <a class="card" href="/templates/ac-1-v2-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Dynamic Cart</span>
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2.1 · CTA-first</span>
       <h3>AC #1 · كنتِ على بُعد ٤٥ ثانية</h3>
-      <p>T+1h soft nudge. Klaviyo <code style="font-size:10px;color:#7c6f50;">{% for item in event.extra.line_items %}</code> pulls actual abandoned product with image + title + qty. Clickable hero → checkout. Trust row (١٠٠٪ شعر طبيعي · +١٥,٠٠٠ · شحن مجاني — NO return). ريم . جدة micro-review. 24h price-guarantee PS.</p>
-      <div class="meta">Klaviyo ID · SDWqtU · T+1h</div>
+      <p>T+1h soft nudge. <b>Black CTA «كمّلي من حيث وقفتِ ←» above fold</b>. Cart block wrapped in <code style="font-size:10px;color:#7c6f50;">{% if item.image_url %}</code> — renders customer's actual product only, no Shopify collage fallback, text-only if missing. Trust row · ريم . جدة micro-review · 24h price-guarantee PS.</p>
+      <div class="meta">Klaviyo ID · W9AEV4 · T+1h</div>
     </a>
     <a class="card" href="/templates/ac-2-v2-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Social Detection Fear</span>
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2.1 · CTA-first</span>
       <h3>AC #2 · خايفة الناس يعرفون؟</h3>
-      <p>T+24h objection crusher. <b>Typography-only hero</b> — no product photo. Small ★★★★★ · ٤.٨ · +١٥,٠٠٠. Black quote card names the real fear «راح يبان إنه مو شعري؟». Long testimonial from لمى . الرياض (wedding day · mother didn't notice). Closer: «إذا أمّكِ ما لاحظت، مين راح يلاحظ؟»</p>
-      <div class="meta">Klaviyo ID · SyuE4H · T+24h</div>
+      <p>T+24h objection crusher. Black quote card names the fear «راح يبان إنه مو شعري؟» → <b>Black CTA «أرجع لسلّتي ←» above fold</b> → secondary WhatsApp text-link. Long testimonial from لمى . الرياض. Closer: «إذا أمّكِ ما لاحظت، مين راح يلاحظ؟» No product photo anywhere.</p>
+      <div class="meta">Klaviyo ID · Rv9Psk · T+24h</div>
     </a>
     <a class="card" href="/templates/ac-3-v2-final.html">
-      <span class="badge" style="background:#25D366;color:#ffffff;">★ v2 · Founder Letter</span>
+      <span class="badge" style="background:#25D366;color:#ffffff;">★ v2.1 · WhatsApp-first</span>
       <h3>AC #3 · رسالة صغيرة · سهام</h3>
-      <p>T+48h founder intimacy. <b>Typographic signature header</b> (سهام · 52px light italic) — no product. From-name switches to «سهام من زن هير». Origin story (٣ سنين ago · مقابلة بنت · ٤٠ عيّنة مرفوضة). Wordplay مو شعر إنه شعور. PRIMARY green WhatsApp CTA «💬 أكلّم سهام مباشرة». Personal voice = highest T+48 CTR lever.</p>
-      <div class="meta">Klaviyo ID · RPZR2T · T+48h · WhatsApp primary</div>
+      <p>T+48h founder intimacy. Signature header (سهام · 46px light italic) → H1 «رسالة صغيرة.» → 1-line hook → <b>Green WhatsApp CTA «💬 أكلّم سهام مباشرة» above fold</b>. Origin story (٣ سنين · ٤٠ عيّنة مرفوضة) · yellow-bar pull quote · مو شعر إنه شعور wordplay · repeat green CTA.</p>
+      <div class="meta">Klaviyo ID · WDJd2j · T+48h · WhatsApp primary</div>
     </a>
     <a class="card" href="/templates/ac-4-v2-final.html">
-      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2 · Generous Close · SAVE10</span>
+      <span class="badge" style="background:#1c1d1d;color:#ffd430;">★ v2.1 · Code-in-fold · SAVE10</span>
       <h3>AC #4 · قرّرتِ، أو لا. هذا لكِ.</h3>
-      <p>T+72h paradox-of-generosity close (not desperate urgency). <b>NB2-generated line-drawn gift icon</b> + dashed SAVE10 code box. Black «استخدمي كودي» primary + «أو» divider + outlined green WhatsApp secondary. <b>TEXT-only</b> cart summary (no image — distinct from AC#1). PS: «ما نحب الضغط، وما نحسب إنه يشتغل.»</p>
-      <div class="meta">Klaviyo ID · XWHyDr · T+72h · SAVE10 + gift</div>
+      <p>T+72h paradox-of-generosity close. <b>All in first fold</b>: deadline pill → H1 → offer headline → horizontal card [NB2 gift icon 80px · SAVE10 dashed code] → Black CTA «استخدمي كودي ←». Below: «أو» divider → outlined green WhatsApp → TEXT-only cart summary → soft deadline PS: «ما نحب الضغط، وما نحسب إنه يشتغل.»</p>
+      <div class="meta">Klaviyo ID · Vw78fx · T+72h · SAVE10 + gift</div>
     </a>
   </div>
 
-  <!-- v1 archive (kept for comparison, not wired to flow) -->
-  <div style="text-align:center;font-size:11px;color:#9a9a9a;letter-spacing:1px;margin:48px 0 12px;text-transform:uppercase;">v1 Archive · Not Live</div>
+  <!-- v2.0 + v1 archive (kept for comparison, not wired to flow) -->
+  <div style="text-align:center;font-size:11px;color:#9a9a9a;letter-spacing:1px;margin:48px 0 12px;text-transform:uppercase;">v2.0 Archive · Superseded by v2.1</div>
   <div class="grid" style="opacity:0.55;">
+    <a class="card" href="/templates/ac-1-v2-final.html">
+      <span class="badge" style="background:#e5e5e5;">v2.0 · archived</span>
+      <h3>AC #1 v2.0 — had static collage fallback</h3>
+      <p>Rendered generic Shopify PT400 collage when cart was empty. CTA was below the fold. Replaced by v2.1 W9AEV4.</p>
+      <div class="meta">Klaviyo ID · SDWqtU · archived</div>
+    </a>
+    <a class="card" href="/templates/ac-2-v2-final.html">
+      <span class="badge" style="background:#e5e5e5;">v2.0 · archived</span>
+      <h3>AC #2 v2.0 — CTA below fold</h3>
+      <p>Quote card first-fold, CTA further down. Replaced by v2.1 Rv9Psk (CTA directly below quote card).</p>
+      <div class="meta">Klaviyo ID · SyuE4H · archived</div>
+    </a>
+    <a class="card" href="/templates/ac-3-v2-final.html">
+      <span class="badge" style="background:#e5e5e5;">v2.0 · archived</span>
+      <h3>AC #3 v2.0 — signature block too tall</h3>
+      <p>52px signature header pushed CTA below fold. Replaced by v2.1 WDJd2j (46px sig + compact H1).</p>
+      <div class="meta">Klaviyo ID · RPZR2T · archived</div>
+    </a>
+    <a class="card" href="/templates/ac-4-v2-final.html">
+      <span class="badge" style="background:#e5e5e5;">v2.0 · archived</span>
+      <h3>AC #4 v2.0 — code stacked, CTA scrolled</h3>
+      <p>Gift icon above code, CTA pushed below fold. Replaced by v2.1 Vw78fx (horizontal icon+code pair).</p>
+      <div class="meta">Klaviyo ID · XWHyDr · archived</div>
+    </a>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#9a9a9a;letter-spacing:1px;margin:32px 0 12px;text-transform:uppercase;">v1 Archive · Original Flow</div>
+  <div class="grid" style="opacity:0.4;">
     <a class="card" href="/templates/ac-1-final.html">
       <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #1 · شي نسيتيه؟</h3>
-      <p>Original v1: static product card, cart-saved reassurance. Replaced by v2 SDWqtU.</p>
+      <p>Original v1: static product card. Replaced by v2.1 W9AEV4.</p>
       <div class="meta">Klaviyo ID · US56fq · archived</div>
     </a>
     <a class="card" href="/templates/ac-2-final.html">
       <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #2 · ٤.٨ ★ من ١٥,٠٠٠ تقييم</h3>
-      <p>Original v1: rating hero + ريم. جدة review. Replaced by v2 SyuE4H.</p>
+      <p>Original v1: rating hero + ريم. جدة review. Replaced by v2.1 Rv9Psk.</p>
       <div class="meta">Klaviyo ID · TshYgu · archived</div>
     </a>
     <a class="card" href="/templates/ac-3-final.html">
       <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #3 · ما فيه أيّ مخاطرة</h3>
-      <p>Original v1: 3-card friction-kill (incl. retracted 14-day return). Replaced by v2 RPZR2T.</p>
+      <p>Original v1: 3-card friction-kill (incl. retracted 14-day return). Replaced by v2.1 WDJd2j.</p>
       <div class="meta">Klaviyo ID · SvmaiD · archived</div>
     </a>
     <a class="card" href="/templates/ac-4-final.html">
       <span class="badge" style="background:#e5e5e5;">v1 · archived</span>
       <h3>AC #4 · ٢٤ ساعة · ١٠٪ + هدية</h3>
-      <p>Original v1: urgency-first last-call. Replaced by v2 XWHyDr (generosity-first close).</p>
+      <p>Original v1: urgency-first last-call. Replaced by v2.1 Vw78fx (generosity + code in fold).</p>
       <div class="meta">Klaviyo ID · ViwC4y · archived</div>
     </a>
   </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>كنتِ على بُعد ٤٥ ثانية · Zen Hair · Abandoned Checkout #1 v2 (T+1h)</title>
+<title>كنتِ على بُعد ٤٥ ثانية · Zen Hair · Abandoned Checkout #1 v2.1 (T+1h)</title>
 <style>
   body { margin:0; padding:0; background:#fafaf8; font-family:'Tajawal',-apple-system,'Segoe UI',Tahoma,Arial,sans-serif; -webkit-text-size-adjust:100%; }
   table { border-collapse:collapse; }
@@ -11,7 +11,7 @@
   a { color:#1c1d1d; text-decoration:none; }
   .container { width:100%; max-width:600px; margin:0 auto; background:#fafaf8; }
   @media only screen and (max-width:600px){
-    .h1 { font-size:28px !important; line-height:1.2 !important; }
+    .h1 { font-size:30px !important; line-height:1.15 !important; }
     .body-pad { padding-left:24px !important; padding-right:24px !important; }
     .trust td { display:block !important; width:100% !important; padding:10px 0 !important; }
   }
@@ -19,93 +19,93 @@
 </head>
 <body dir="rtl">
 <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#fafaf8;">
-  سلّتكِ معنا، محفوظة زي ما تركتيها — أقل من دقيقة وتخلّصين
+  سلّتكِ محفوظة — أقل من دقيقة وتخلّصين
 </div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fafaf8;">
   <tr><td align="center" style="padding:0;">
     <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#fafaf8;">
-      <tr><td align="center" style="padding:24px 0 16px 0;">
-        <img src="https://www.zenhairshop.com/cdn/shop/files/zen-hair-logo_de0f75e2-782b-4849-943d-69475656d608.png" alt="Zen Hair" width="100" style="width:100px;height:auto;">
+      <!-- Logo -->
+      <tr><td align="center" style="padding:24px 0 20px 0;">
+        <img src="https://www.zenhairshop.com/cdn/shop/files/zen-hair-logo_de0f75e2-782b-4849-943d-69475656d608.png" alt="Zen Hair" width="80" style="width:80px;height:auto;">
       </td></tr>
 
-      <tr><td align="right" class="body-pad" style="padding:20px 48px 6px 48px;">
-        <div class="h1" style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:34px;line-height:1.2;color:#1c1d1d;letter-spacing:-0.5px;">
-          كنتِ على بُعد<br>٤٥ ثانية فقط.
-        </div>
-      </td></tr>
-      <tr><td align="right" class="body-pad" style="padding:16px 48px 28px 48px;">
-        <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:17px;line-height:1.75;color:#1c1d1d;">
-          {% if first_name %}{{ first_name }}، {% endif %}ما نعرف وش صار — انترنت، أذان، طفل، مكالمة.
-          <br><br>
-          اللي نعرفه: سلّتكِ لسّه معنا، وكل شي فيها محفوظ لكِ. أقل من دقيقة، وطلبكِ في الطريق.
+      <!-- ============ FIRST FOLD ============ -->
+
+      <!-- H1 -->
+      <tr><td align="right" class="body-pad" style="padding:16px 48px 12px 48px;">
+        <div class="h1" style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:36px;line-height:1.15;color:#1c1d1d;letter-spacing:-0.5px;">
+          كنتِ على بُعد<br>٤٥ ثانية.
         </div>
       </td></tr>
 
-      <!-- DYNAMIC CART BLOCK — Klaviyo pulls actual abandoned line items -->
-      <tr><td align="center" style="padding:0 24px 16px 24px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;border-radius:16px;border:1px solid #e5e5e5;">
-          <tr><td align="center" style="padding:20px 28px 8px 28px;">
-            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:11px;line-height:1;color:#7c6f50;letter-spacing:3px;text-transform:uppercase;">
-              سلّتكِ
-            </div>
-          </td></tr>
+      <!-- Hook — single sentence -->
+      <tr><td align="right" class="body-pad" style="padding:0 48px 24px 48px;">
+        <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:#1c1d1d;">
+          {% if first_name %}{{ first_name }}، {% endif %}سلّتكِ محفوظة. أقل من دقيقة، وطلبكِ في الطريق.
+        </div>
+      </td></tr>
 
-          {% for item in event.extra.line_items %}
-          <tr><td align="center" style="padding:12px 28px 4px 28px;">
-            <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}" style="text-decoration:none;">
-              <img src="{{ item.image_url|default:'https://cdn.shopify.com/s/files/1/0565/4485/4061/files/Collage_3_e18f44a2-02de-4149-afd6-11e02f49679f.webp?v=1752228697' }}" alt="{{ item.product_title|default:'إكستنشن زن هير' }}" width="280" style="width:100%;max-width:280px;height:auto;border-radius:12px;">
+      <!-- PRIMARY CTA in first fold -->
+      <tr><td align="center" style="padding:4px 48px 8px 48px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td align="center" bgcolor="#1c1d1d" style="background:#1c1d1d;border-radius:100px;">
+            <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}"
+               style="display:inline-block;padding:20px 56px;font-family:'Tajawal',Arial,sans-serif;font-weight:700;font-size:16px;line-height:1;color:#ffffff;text-decoration:none;letter-spacing:1px;min-width:260px;text-align:center;">
+              كمّلي من حيث وقفتِ ←
             </a>
           </td></tr>
-          <tr><td align="center" style="padding:12px 28px 4px 28px;">
-            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:#1c1d1d;">
-              {{ item.product_title|default:'إكستنشن شعر طبيعي' }}{% if item.variant_title and item.variant_title != 'Default Title' %} · {{ item.variant_title }}{% endif %}
+        </table>
+      </td></tr>
+      <tr><td align="center" style="padding:12px 48px 36px 48px;">
+        <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.5;color:#7c6f50;">
+          دقيقة واحدة · وخلّصتي
+        </div>
+      </td></tr>
+
+      <!-- ============ BELOW FOLD ============ -->
+
+      <!-- Cart summary — text-first, dynamic, NO static fallback image -->
+      <tr><td align="center" class="body-pad" style="padding:8px 48px 16px 48px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;">
+          <tr><td align="right" style="padding:20px 4px 8px 4px;">
+            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:11px;line-height:1;color:#7c6f50;letter-spacing:3px;text-transform:uppercase;">
+              في سلّتكِ
             </div>
           </td></tr>
-          <tr><td align="center" style="padding:0 28px 16px 28px;">
-            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:600;font-size:14px;color:#7c6f50;">
-              {{ item.quantity|default:1 }} × {{ item.line_price|default:'محفوظ في سلّتكِ'|money }}
-            </div>
+          {% for item in event.extra.line_items %}
+          <tr><td align="right" style="padding:12px 4px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                {% if item.image_url %}
+                <td align="right" valign="top" width="88" style="padding:0 0 0 16px;">
+                  <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}" style="text-decoration:none;">
+                    <img src="{{ item.image_url }}" alt="{{ item.product_title }}" width="72" style="width:72px;height:72px;border-radius:8px;">
+                  </a>
+                </td>
+                {% endif %}
+                <td align="right" valign="middle">
+                  <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:#1c1d1d;">
+                    {{ item.product_title|default:'إكستنشن شعر طبيعي' }}{% if item.variant_title and item.variant_title != 'Default Title' %} · {{ item.variant_title }}{% endif %}
+                  </div>
+                  <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.6;color:#7c6f50;margin-top:4px;">
+                    {{ item.quantity|default:1 }} × {{ item.line_price|default:'السعر'|money }}
+                  </div>
+                </td>
+              </tr>
+            </table>
           </td></tr>
           {% empty %}
-          <!-- Fallback if no line items present -->
-          <tr><td align="center" style="padding:8px 28px 4px 28px;">
-            <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/0565/4485/4061/files/Collage_3_e18f44a2-02de-4149-afd6-11e02f49679f.webp?v=1752228697" alt="إكستنشن زن هير" width="280" style="width:100%;max-width:280px;height:auto;border-radius:12px;">
-            </a>
-          </td></tr>
-          <tr><td align="center" style="padding:12px 28px 6px 28px;">
-            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:#1c1d1d;">
-              إكستنشن شعر طبيعي
-            </div>
-          </td></tr>
-          <tr><td align="center" style="padding:0 28px 20px 28px;">
-            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.5;color:#7c6f50;">
-              محفوظ في سلّتكِ · في انتظار الدفع
+          <tr><td align="right" style="padding:12px 4px 20px 4px;">
+            <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:14px;line-height:1.6;color:#7c6f50;">
+              سلّتكِ محفوظة · في انتظار الدفع
             </div>
           </td></tr>
           {% endfor %}
         </table>
       </td></tr>
 
-      <!-- Primary CTA -->
-      <tr><td align="center" style="padding:16px 48px 8px 48px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-          <tr><td align="center" bgcolor="#1c1d1d" style="background:#1c1d1d;border-radius:100px;">
-            <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}"
-               style="display:inline-block;padding:18px 52px;font-family:'Tajawal',Arial,sans-serif;font-weight:700;font-size:15px;line-height:1;color:#ffffff;text-decoration:none;letter-spacing:1px;min-width:220px;text-align:center;">
-              كمّلي من حيث وقفتِ ←
-            </a>
-          </td></tr>
-        </table>
-      </td></tr>
-      <tr><td align="center" style="padding:8px 48px 32px 48px;">
-        <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.5;color:#7c6f50;">
-          دقيقة واحدة · وخلّصتي
-        </div>
-      </td></tr>
-
-      <!-- Trust row (NO return — authenticity + volume + free ship) -->
-      <tr><td align="center" style="padding:8px 24px 20px 24px;">
+      <!-- Trust row -->
+      <tr><td align="center" style="padding:24px 24px 20px 24px;">
         <table role="presentation" class="trust" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;">
           <tr>
             <td align="center" style="padding:18px 8px;font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:12px;line-height:1.5;color:#1c1d1d;letter-spacing:0.5px;">
@@ -137,11 +137,21 @@
         </div>
       </td></tr>
 
-      <tr><td align="center" style="padding:16px 48px 0 48px;">
+      <!-- Secondary CTA (repeat — safety net) -->
+      <tr><td align="center" style="padding:8px 48px 24px 48px;">
+        <a href="{{ event.CheckoutURL|default:'https://www.zenhairshop.com/cart' }}" style="font-family:'Tajawal',Arial,sans-serif;font-weight:600;font-size:14px;line-height:1.5;color:#1c1d1d;text-decoration:underline;">
+          كمّلي سلّتي ←
+        </a>
+      </td></tr>
+
+      <!-- Divider -->
+      <tr><td align="center" style="padding:8px 48px 0 48px;">
         <table role="presentation" width="60" cellpadding="0" cellspacing="0" border="0">
           <tr><td style="border-top:1px solid #7c6f50;font-size:0;line-height:0;height:1px;">&nbsp;</td></tr>
         </table>
       </td></tr>
+
+      <!-- Sign-off -->
       <tr><td align="right" class="body-pad" style="padding:28px 48px 8px 48px;">
         <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:400;font-size:15px;line-height:1.6;color:#3d3e43;">بكل حب،</div>
         <div style="font-family:'Tajawal',Arial,sans-serif;font-weight:500;font-size:16px;line-height:1.6;color:#1c1d1d;margin-top:4px;">سهام</div>
@@ -153,6 +163,7 @@
         </div>
       </td></tr>
     </table>
+    <!-- Footer -->
     <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#ffffff;border-top:1px solid #e5e5e5;">
       <tr><td align="center" style="padding:32px 24px 16px 24px;">
         <img src="https://www.zenhairshop.com/cdn/shop/files/zen-hair-logo_de0f75e2-782b-4849-943d-69475656d608.png" alt="Zen Hair" width="70" style="width:70px;height:auto;opacity:0.8;">

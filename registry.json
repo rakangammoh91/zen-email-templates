@@ -1,0 +1,136 @@
+{
+  "_meta": {
+    "description": "Template name -> Klaviyo ID registry. Every entry tagged with language. See LANGUAGE-SEPARATION.md.",
+    "last_updated": "2026-04-16",
+    "klaviyo_account_id": "WARVNh",
+    "klaviyo_edit_url_pattern": "https://www.klaviyo.com/email-editor/{id}/edit",
+    "currency": "SAR",
+    "timezone": "Asia/Amman",
+    "sender_name": "سهام من زن هير",
+    "sender_en_display_name": "Seham · Zen Hair",
+    "sender_email": "info@zenhairshop.com",
+    "founder_identity": {
+      "ar": { "name": "سهام", "title": "شريكة مؤسِّسة · زن هير" },
+      "en": { "name": "Seham", "title": "Co-Founder · Zen Hair" }
+    }
+  },
+  "flows": {
+    "ar": {
+      "welcome": "RpUXJv",
+      "thank_you": "UcxCCH",
+      "referral": "TqHqU2",
+      "browse_abandon": "VKsTPF",
+      "site_abandon": "UQqPVR",
+      "abandoned_cart": "Xkg5DZ",
+      "abandoned_checkout": "Xu8gx8",
+      "fulfilled_order": "Ugfkcj"
+    },
+    "en": {
+      "welcome": "XVkXi4",
+      "site_abandon": "RTdRCz",
+      "browse_abandon": "SnVUkb",
+      "abandoned_checkout": "Y6saqP",
+      "_note": "KEEP LIVE per founder directive 2026-04-16 — do NOT archive. Rewrite to EN voice when EN pattern library has sufficient confidence."
+    }
+  },
+  "lists": {
+    "ar": {
+      "squeeze_page": "UZL6as",
+      "legacy_master": "UuSwLE"
+    },
+    "en": {
+      "squeeze_page": "Ufa2TB",
+      "legacy_master": "W4spGm"
+    },
+    "other": {
+      "free_sample_1": "XVHa6u",
+      "free_sample_2": "WXdiNn",
+      "ghl_list": "SZ7nKa",
+      "ghl_funnels": "Sq7Aex"
+    }
+  },
+  "segments": {
+    "shared": {
+      "vip": "YzbgxD",
+      "vip_legacy": "SdJBtU",
+      "high_aov": "VjjgUC",
+      "potential_purchasers": "RAHyRh",
+      "engaged_30d": "RS4wxS",
+      "engaged_60d": "UkesRj",
+      "engaged_90d": "WyaC7F",
+      "exclude_suppressed": "QPaQg2",
+      "exclude_unengaged": "R7n5YH",
+      "exclude_suppress": "RQvExN",
+      "exclude_clean_4": "RraB6N",
+      "exclude_bounced": "S2hTN3",
+      "exclude_jobs": "Sd3G5T",
+      "exclude_noreply": "Sh5GnV",
+      "exclude_never_engaged": "XDzbbr",
+      "_vip_note": "vip promoted to YzbgxD (AI-built 2026-04-13: 3+ orders + CLV>2000). Legacy SdJBtU kept for historical reference only; do not use for new sends."
+    },
+    "ai_built_2026_04_14": {
+      "target_recent_buyers_14d": "T4djTX",
+      "target_new_subscribers_14d": "VR9hEW",
+      "target_browse_no_buy_30d": "Wry66G",
+      "target_at_risk_60d": "Wtd6ei",
+      "target_high_aov": "VjjgUC",
+      "target_vip_buyers": "YzbgxD",
+      "target_engaged_90d": "WyaC7F",
+      "target_engaged_60d": "UkesRj",
+      "target_engaged_30d": "RS4wxS",
+      "_note": "AI-built segments. None match Ponytail Launch 1:1 — UkesRj (Engaged 60d) is reused as composition primitive. At-Risk useful for future win-back. VIP + HighAOV reserved for future cross-sell."
+    },
+    "ar": {
+      "buyers_90d_engaged_60d": null
+    },
+    "en": {
+      "buyers_90d_engaged_60d": null
+    },
+    "segments_needed": {
+      "ar.buyers_90d_engaged_60d": {
+        "definition": "Member of list UZL6as (AR Squeeze Page) AND Placed Order count ≥1 last 90d AND Member of segment UkesRj (Engaged 60d) AND NOT member of suppression_stack",
+        "composition": "lists:UZL6as + metric:Placed Order 90d≥1 + segment:UkesRj + NOT suppression_stack",
+        "purpose": "Ponytail Launch AR arm + future AR broadcasts"
+      },
+      "en.buyers_90d_engaged_60d": {
+        "definition": "Member of list Ufa2TB (EN Squeeze Page) AND Placed Order count ≥1 last 90d AND Member of segment UkesRj (Engaged 60d) AND NOT member of suppression_stack",
+        "composition": "lists:Ufa2TB + metric:Placed Order 90d≥1 + segment:UkesRj + NOT suppression_stack",
+        "purpose": "Ponytail Launch EN arm + future EN broadcasts"
+      },
+      "ar.repeat_buyers": {
+        "definition": "Member of list UZL6as AND Placed Order count ≥2 all-time",
+        "purpose": "TY flow split at Day 60 (ty-7a)"
+      },
+      "ar.one_time_buyers_60d": {
+        "definition": "Member of list UZL6as AND Placed Order count =1 AND first order ≥60d ago",
+        "purpose": "TY flow split at Day 60 (ty-7b)"
+      }
+    }
+  },
+  "suppression_stack": ["QPaQg2","R7n5YH","RQvExN","RraB6N","S2hTN3","Sd3G5T","Sh5GnV","XDzbbr"],
+  "suppression_stack_note": "XDzbbr (AI | Exclude | Never Engaged) added 2026-04-16 per founder approval. Stricter than R7n5YH/RQvExN: 10+ received + 0 opens/clicks alltime.",
+  "thank_you_flow_ar": {
+    "ty-1": { "id": "Xa8dGZ", "day": 1, "file": "ar/templates/ty-1-final.html", "status": "live", "purpose": "Arrival reassurance", "language": "ar" },
+    "ty-2": { "id": "WJ9rUe", "day": 4, "file": "ar/templates/ty-2-final.html", "status": "live", "purpose": "Care guide", "language": "ar" },
+    "ty-3": { "id": "Th8rtT", "day": 8, "file": "ar/templates/ty-3-final.html", "status": "live", "purpose": "How-to-wear video", "language": "ar" },
+    "ty-4": { "id": null, "day": null, "file": null, "status": "deleted", "purpose": "UGC ask (killed by founder)", "language": "ar" },
+    "ty-5": { "id": "Spp7Kh", "day": 25, "file": "ar/templates/ty-5-final.html", "status": "live", "purpose": "Written review ask", "language": "ar" },
+    "ty-6": { "id": "QS3vmG", "day": 40, "file": "ar/templates/ty-6-final.html", "status": "live", "purpose": "Ponytail cross-sell", "language": "ar" },
+    "ty-7a": { "id": "TwisrJ", "day": 60, "file": "ar/templates/ty-7a-final.html", "status": "live", "purpose": "Second set · repeat buyers", "cohort": "repeat", "language": "ar" },
+    "ty-7b": { "id": "Y5SMxB", "day": 60, "file": "ar/templates/ty-7b-final.html", "status": "rework-pending", "purpose": "Referral 150+150 · one-timers", "cohort": "one-timer", "blocker": "Headline treatment + mechanic (one-sided vs two-sided)", "language": "ar" },
+    "ty-8": { "id": "TKmHq7", "day": 90, "file": "ar/templates/ty-8-final.html", "status": "live", "purpose": "Check-in", "language": "ar" }
+  },
+  "welcome_flow_ar_v10": {
+    "e1": { "id": null, "status": "pending", "language": "ar" },
+    "e2": { "id": null, "status": "pending", "language": "ar" },
+    "e3": { "id": null, "status": "pending", "purpose": "Founder story", "language": "ar" },
+    "e4": { "id": null, "status": "pending", "purpose": "Founder demo", "language": "ar" }
+  },
+  "campaigns": {
+    "ponytail-launch-ar": { "id": null, "status": "draft-ready", "file": "ar/drafts/ponytail-launch.html", "purpose": "Ponytail Launch AR arm of language A/B", "language": "ar" },
+    "ponytail-launch-en": { "id": null, "status": "pending", "file": "en/drafts/ponytail-launch.html", "purpose": "Ponytail Launch EN arm of language A/B", "language": "en" }
+  },
+  "abandoned_browse_ar": {
+    "v1": { "id": null, "status": "pending", "purpose": "AR browse abandonment rewrite", "language": "ar" }
+  }
+}
