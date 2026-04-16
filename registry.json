@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Template name -> Klaviyo ID registry. Every entry tagged with language. See LANGUAGE-SEPARATION.md.",
-    "last_updated": "2026-04-16",
+    "last_updated": "2026-04-16T10:07Z",
     "klaviyo_account_id": "WARVNh",
     "klaviyo_edit_url_pattern": "https://www.klaviyo.com/email-editor/{id}/edit",
     "currency": "SAR",
@@ -81,28 +81,95 @@
       "_note": "AI-built segments. None match Ponytail Launch 1:1 — UkesRj (Engaged 60d) is reused as composition primitive. At-Risk useful for future win-back. VIP + HighAOV reserved for future cross-sell."
     },
     "ar": {
-      "buyers_90d_engaged_60d": null
+      "buyers_90d": "US9JzM",
+      "buyers_90d_profile_count": 384,
+      "repeat_buyers": "X6z9Ku",
+      "repeat_buyers_profile_count": 683,
+      "repeat_buyers_definition": "$locale_language=ar AND Placed Order count alltime ≥2",
+      "one_time_buyers_60d_plus": "RCEeSD",
+      "one_time_buyers_60d_plus_profile_count": 2306,
+      "one_time_buyers_60d_plus_definition": "$locale_language=ar AND Placed Order count alltime =1 AND Placed Order count last 60d =0",
+      "engaged_non_buyers": "WxkRqs",
+      "engaged_non_buyers_profile_count": 4320,
+      "engaged_non_buyers_definition": "$locale_language=ar AND (Opened|Clicked in last 90d) AND Placed Order count alltime =0",
+      "lapsed_buyers_180d": "RBPJNQ",
+      "lapsed_buyers_180d_profile_count": 2399,
+      "lapsed_buyers_180d_definition": "$locale_language=ar AND Placed Order count alltime ≥1 AND Placed Order count last 180d =0",
+      "_created": "2026-04-16",
+      "_build_note": "All AR segments use $locale_language='ar' custom property. Suppression stack applied at campaign send layer."
     },
     "en": {
-      "buyers_90d_engaged_60d": null
+      "buyers_90d": "W3yztD",
+      "buyers_90d_profile_count": 53,
+      "repeat_buyers": "WViD4G",
+      "repeat_buyers_profile_count": 120,
+      "one_time_buyers_60d_plus": "WQFnHi",
+      "one_time_buyers_60d_plus_profile_count": 272,
+      "engaged_non_buyers": "X5JDFF",
+      "engaged_non_buyers_profile_count": 77,
+      "lapsed_buyers_180d": "Y5SXSK",
+      "lapsed_buyers_180d_profile_count": 290,
+      "_created": "2026-04-16",
+      "_build_note": "All EN segments use $locale_language='en' custom property. Mirror of AR lifecycle set. Counts smaller because Zen Hair is predominantly Arabic audience (528 total EN profiles vs 21k+ AR)."
+    },
+    "lifetime_value": {
+      "low": "UxDt4E",
+      "low_profile_count": 410,
+      "low_definition": "Placed Order sum alltime >0 AND <500 SAR",
+      "mid": "V63fjT",
+      "mid_profile_count": 3620,
+      "mid_definition": "Placed Order sum alltime ≥500 AND <2000 SAR",
+      "high": "VjjgUC",
+      "high_profile_count": 1038,
+      "high_definition": "Placed Order sum alltime >2000 SAR",
+      "_created": "2026-04-16",
+      "_note": "VjjgUC was broken (used dead metric Xf2suC) — PATCHed 2026-04-16 to use RFkPcF sum. LV tiers sum to 5,068 = total lifetime buyers in account."
     },
     "segments_needed": {
-      "ar.buyers_90d_engaged_60d": {
-        "definition": "Member of list UZL6as (AR Squeeze Page) AND Placed Order count ≥1 last 90d AND Member of segment UkesRj (Engaged 60d) AND NOT member of suppression_stack",
-        "composition": "lists:UZL6as + metric:Placed Order 90d≥1 + segment:UkesRj + NOT suppression_stack",
+      "_status_2026_04_16": "RESOLVED. AR + EN buyers 90d built via POST /api/segments at IDs US9JzM + W3yztD. Engagement gate + suppression stack intentionally dropped (applied at campaign send time instead).",
+      "_api_truth_learned_2026_04_16": [
+        "Klaviyo Segment API accepts profile-property filters on custom properties like properties['$locale_language']. WmJkqU proves this works; $locale_language is auto-populated by Klaviyo alongside the built-in `locale` attribute.",
+        "Conditions WITHIN the same condition_group are OR'd. Condition GROUPS (top-level) are AND'd. Forgetting this cost us one iteration (UaJFDd/RKhKw7 returned impossible counts).",
+        "Built-in `locale` attribute is NOT a valid segment-condition property — must use properties['$locale_language'] instead.",
+        "profile-group-membership accepts only LIST IDs, not segment IDs. UkesRj and suppression segments still cannot be referenced as primitives — this is a real limit, but a non-issue once we moved suppression to the campaign layer."
+      ],
+      "resolved_approach": {
+        "language_filter": "properties['$locale_language'] equals 'ar' | 'en' (custom property Klaviyo auto-populates)",
+        "purchase_filter": "profile-metric RFkPcF, measurement:count, operator:greater-than 0, timeframe:in-the-last 90 day",
+        "suppression": "Applied via Klaviyo campaign 'Excluded audience' (8-segment stack from registry.suppression_stack), NOT in segment definition",
+        "engagement_gate": "Dropped — buyers in last 90d are de facto engaged; matches T4djTX pattern"
+      },
+      "audience_primitives_ground_truth_2026_04_16": {
+        "Ri2yYm": "Wellcome | Sign up form — 17,170 profiles (main subscriber pool, mixed AR/EN)",
+        "SbHpcS": "[ENGLISH] Newsletter — 2,363 profiles",
+        "UuSwLE": "Zen Hairshop-Arabic List — 9 profiles",
+        "UZL6as": "AM | Arabic | Squeeze Page — 0 profiles (previously assumed primary AR list, actually empty)",
+        "Ufa2TB": "AM | English | Squeeze Page — 0 profiles (previously assumed primary EN list, actually empty)",
+        "UkesRj": "Engaged 60d segment — 7,325 profiles (~98% Arabic locale per 100-profile sample)",
+        "WmJkqU": "AM | English Profiles segment — 528 profiles (usable as EN primitive in UI builds)",
+        "UjXryK": "English popup segment — 223 profiles"
+      },
+      "placed_order_canonical_metric": "RFkPcF (Shopify integration) — active as of 2026-04-16, latest event same day. Ignore XFdah2 (Celery) and Xf2suC (API) for segment conditions — no recent events.",
+      "ar.buyers_90d_BUILT": {
+        "id": "US9JzM",
+        "profile_count": 384,
+        "definition": "properties['$locale_language'] equals 'ar' AND Placed Order (RFkPcF) count >0 in last 90 days",
         "purpose": "Ponytail Launch AR arm + future AR broadcasts"
       },
-      "en.buyers_90d_engaged_60d": {
-        "definition": "Member of list Ufa2TB (EN Squeeze Page) AND Placed Order count ≥1 last 90d AND Member of segment UkesRj (Engaged 60d) AND NOT member of suppression_stack",
-        "composition": "lists:Ufa2TB + metric:Placed Order 90d≥1 + segment:UkesRj + NOT suppression_stack",
+      "en.buyers_90d_BUILT": {
+        "id": "W3yztD",
+        "profile_count": 53,
+        "definition": "properties['$locale_language'] equals 'en' AND Placed Order (RFkPcF) count >0 in last 90 days",
         "purpose": "Ponytail Launch EN arm + future EN broadcasts"
       },
-      "ar.repeat_buyers": {
-        "definition": "Member of list UZL6as AND Placed Order count ≥2 all-time",
+      "ar.repeat_buyers_BUILT": {
+        "id": "X6z9Ku",
+        "profile_count": 683,
         "purpose": "TY flow split at Day 60 (ty-7a)"
       },
-      "ar.one_time_buyers_60d": {
-        "definition": "Member of list UZL6as AND Placed Order count =1 AND first order ≥60d ago",
+      "ar.one_time_buyers_60d_BUILT": {
+        "id": "RCEeSD",
+        "profile_count": 2306,
         "purpose": "TY flow split at Day 60 (ty-7b)"
       }
     }
