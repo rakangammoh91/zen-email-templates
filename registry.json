@@ -133,6 +133,38 @@
       "_created": "2026-04-16",
       "_note": "VjjgUC was broken (used dead metric Xf2suC) — PATCHed 2026-04-16 to use RFkPcF sum. LV tiers sum to 5,068 = total lifetime buyers in account."
     },
+    "geography": {
+      "_meta": {
+        "created": "2026-04-16",
+        "property": "properties['$country']",
+        "property_note": "$country is a Klaviyo auto-populated custom property (like $locale_language). Use via profile-property condition with full English country name. The built-in `location.country` attribute is NOT filterable in segment definitions — `profile-region` condition type is for Klaviyo data-residency regions, not country filtering.",
+        "distribution_snapshot_2026_04_16": {
+          "Saudi Arabia":           13495,
+          "United Arab Emirates":    1739,
+          "Qatar":                    728,
+          "United Kingdom":           308,
+          "Egypt":                    302,
+          "Kuwait":                   150,
+          "Bahrain":                  124,
+          "_notes": "80% Saudi confirms founder 'predominantly Saudi audience'. Qatar surprisingly #3. Oman not individually probed (~718 per GCC ex-KSA math)."
+        }
+      },
+      "ksa": {
+        "id": "X6uTiQ",
+        "name": "Geo | KSA (Saudi Arabia)",
+        "profile_count": 13495,
+        "definition": "$country equals 'Saudi Arabia'",
+        "purpose": "Hero market. Use for Saudi-specific promos, Ramadan/Eid/Saudi National Day, SAR pricing, Saudi shipping zone. 80% of audience."
+      },
+      "gcc_ex_ksa": {
+        "id": "QUVFtY",
+        "name": "Geo | GCC ex-KSA",
+        "profile_count": 3459,
+        "definition": "$country equals UAE OR Kuwait OR Bahrain OR Qatar OR Oman (OR'd in single condition_group)",
+        "purpose": "Secondary GCC markets. Different shipping, VAT, currency handling. Often bilingual (AR+EN) audience. Use for cross-border promos."
+      },
+      "_row_note": "Rest-of-World (UK, US, EU, Egypt, Jordan, etc.) not built as a dedicated segment — compose at campaign send time via exclusion of ksa + gcc_ex_ksa."
+    },
     "product_cohorts": {
       "_meta": {
         "created": "2026-04-16",
