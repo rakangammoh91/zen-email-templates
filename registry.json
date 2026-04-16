@@ -133,6 +133,48 @@
       "_created": "2026-04-16",
       "_note": "VjjgUC was broken (used dead metric Xf2suC) — PATCHed 2026-04-16 to use RFkPcF sum. LV tiers sum to 5,068 = total lifetime buyers in account."
     },
+    "subscriber_source": {
+      "_meta": {
+        "created": "2026-04-16",
+        "condition_type": "profile-group-membership",
+        "note": "Subscriber-source cohorts based on which list drove signup. Uses profile-group-membership (is_member=true, group_ids=[...]) — do NOT include timeframe_filter, it is rejected by the API. Within one condition_group, multiple list-membership conditions are OR'd.",
+        "source_lists_audit_2026_04_16": {
+          "Ri2yYm": {"name": "Wellcome | Sign up form",    "profile_count": 17170, "role": "primary organic site popup"},
+          "SbHpcS": {"name": "[ENGLISH] Newsletter",       "profile_count": 2364,  "role": "EN newsletter opt-in"},
+          "Sq7Aex": {"name": "GHL Funnels",                "profile_count": 828,   "role": "GoHighLevel paid-funnel landing"},
+          "WgkUqH": {"name": "Newsletter",                 "profile_count": 725,   "role": "generic newsletter"},
+          "SZ7nKa": {"name": "GHL List",                   "profile_count": 494,   "role": "GoHighLevel list"},
+          "RbhBaP": {"name": "For_Best_Offers_PopUp",      "profile_count": 461,   "role": "offers popup"},
+          "WXdiNn": {"name": "AM | Free Sample List #2",   "profile_count": 432,   "role": "free sample funnel (newer)"},
+          "TZXnBX": {"name": "Blog | Banner",              "profile_count": 246,   "role": "blog content CTA"},
+          "XVHa6u": {"name": "AM | Free Sample List",      "profile_count": 117,   "role": "free sample funnel (older)"},
+          "TZgyzu": {"name": "Free Sample List 2024",      "profile_count": 40,    "role": "free sample 2024 cohort"},
+          "RcHhzp": {"name": "Shopify Customers purchased","profile_count": 0,     "role": "DEAD — Shopify sync deprecated"},
+          "RP27Cc": {"name": "SMS Subscribers",            "profile_count": 0,     "role": "DEAD — SMS moved to different tool"}
+        }
+      },
+      "organic_signup": {
+        "id": "WV7SA5",
+        "name": "Source | Organic Site Signup",
+        "profile_count": 17170,
+        "definition": "member of list Ri2yYm (Wellcome | Sign up form)",
+        "purpose": "Dominant organic pool — came to site, opted in via popup. Clean pre-purchase intent. Target for welcome series, educational content, first-order nudges."
+      },
+      "free_sample_funnel": {
+        "id": "VF5MkP",
+        "name": "Source | Free Sample Funnel",
+        "profile_count": 471,
+        "definition": "member of XVHa6u OR WXdiNn OR TZgyzu (OR'd)",
+        "purpose": "Incentive-driven signups (free sample promise). More cautious buyers. Target with shipping nudges, sample-to-purchase conversion, try-now urgency."
+      },
+      "paid_funnel_ghl": {
+        "id": "RZAKYt",
+        "name": "Source | Paid Funnel (GHL)",
+        "profile_count": 1178,
+        "definition": "member of SZ7nKa OR Sq7Aex (GoHighLevel funnels, OR'd)",
+        "purpose": "Paid-ads acquired cohort. High CAC — deserves careful nurture to justify acquisition cost. Target for premium content, stronger nurture sequences."
+      }
+    },
     "geography": {
       "_meta": {
         "created": "2026-04-16",
