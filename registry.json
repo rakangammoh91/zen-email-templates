@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Template name -> Klaviyo ID registry. Every entry tagged with language. See LANGUAGE-SEPARATION.md.",
-    "last_updated": "2026-04-16T11:30Z",
+    "last_updated": "2026-04-16T20:00Z",
     "klaviyo_account_id": "WARVNh",
     "klaviyo_edit_url_pattern": "https://www.klaviyo.com/email-editor/{id}/edit",
     "currency": "SAR",
@@ -12,6 +12,40 @@
     "founder_identity": {
       "ar": { "name": "سهام", "title": "شريكة مؤسِّسة · زن هير" },
       "en": { "name": "Seham", "title": "Co-Founder · Zen Hair" }
+    },
+    "segmentation_audit_2026_04_16": {
+      "summary": "Full-account audit of 63 segments. Found 3 real bugs + fixed. Post-fix quality: 5/5 coverage, 5/5 correctness, 5/5 hygiene.",
+      "fixes_applied": [
+        "DELETED YaDY3x (leaked __PROBE_A__ Items contains اكستنشن, count=0, created same day, never cleaned up)",
+        "RENAMED XUf7Wy -> 'AM | Exclude | Bots (pattern)' (regex on email/first name)",
+        "RENAMED Wu33h2 -> 'AM | Exclude | Bots (behavioral)' (zero opens + received emails)",
+        "PATCHED RraB6N Clean #4: swapped dead metric Xf2suC (API Placed Order, no events since 2024-07-18) -> RFkPcF (Shopify Placed Order, active). Also swapped dead VsAyY9 (API Started Checkout) -> UDbxB2 (Shopify Checkout Started). Count dropped 2859 -> 2719 (140 real Shopify buyers correctly excluded)."
+      ],
+      "dead_metrics_to_avoid": {
+        "Xf2suC": "API Placed Order — 1 seed event 2024-07-18, nothing since. Never use in segment conditions.",
+        "XFdah2": "Celery Placed Order — legacy integration, abandoned.",
+        "VsAyY9": "API Started Checkout — 1 seed event 2024-07-18, nothing since.",
+        "VU7cyR": "API Active on Site — parallel to U2auYp; check before using."
+      },
+      "live_shopify_metrics_canonical": {
+        "placed_order": "RFkPcF",
+        "ordered_product": "XFDwkK (flat per-line-item fields: ProductID, SKU, Name, Vendor — metric_filters work)",
+        "checkout_started": "UDbxB2",
+        "viewed_product": "XB2fZm",
+        "added_to_cart": "XPxpcx",
+        "refunded": "R4jLA4",
+        "fulfilled": "X4CtJ8"
+      },
+      "unengaged_canonical_policy": {
+        "active_suppression_stack": ["R7n5YH (strict: alltime+consent, 4010 profiles)", "XDzbbr (broad: alltime no-consent, 29415)"],
+        "XBK6Hv": "90d window variant (11178) — RETAINED for re-engagement campaigns, NOT suppression",
+        "rationale": "Three variants exist because different send contexts need different thresholds. Active campaigns use R7n5YH+XDzbbr; re-engagement flows use XBK6Hv."
+      },
+      "engaged_tier_policy": {
+        "AM_Engaged_30D_60D": "TRNF9C / VrThHy — 5-signal + consent gate. Tighter. Use for high-value / VIP sends.",
+        "AI_Engaged_30_60_Days": "RS4wxS / UkesRj — 2-signal (open OR click). Broader. Use for mass promo sends (~7325 on 60d).",
+        "rule": "Not duplicates, complementary tiers. AI is the default for campaigns. AM is the conservative variant."
+      }
     }
   },
   "flows": {
