@@ -1,6 +1,6 @@
 # Zen Hair · Klaviyo Flow Map (Live)
 
-> **Source:** Pulled from Klaviyo API on 2026-04-16.
+> **Source:** Pulled from Klaviyo API on 2026-04-16. Welcome flow craft pass 2026-04-18.
 > **Account:** متجر زن هير (WARVNh) · SAR · Asia/Amman · sender: سهام من زن هير <info@zenhairshop.com>
 
 ---
@@ -9,7 +9,7 @@
 
 | Flow | ID | Trigger | Purpose |
 |---|---|---|---|
-| **Welcome Flow (Arabic)** | `RpUXJv` | Added to List | Subscriber onboarding · Welcome E1–E4 |
+| **Welcome Flow (Arabic)** | `RpUXJv` | Added to List | Subscriber onboarding · Welcome W1–W5 (A+ craft pass 2026-04-18) · founder voice, Hijazi peer register, +٥٠ assist points |
 | **Customer Thank You Flow (Arabic)** | `UcxCCH` | Metric | Post-purchase · **TY #1–#8 live here** |
 | **Referral Flow (Arabic)** | `TqHqU2` | Metric | Referral program · legacy |
 | **Browse Abandonment (Arabic)** | `VKsTPF` | Metric | Browsed but didn't add to cart |

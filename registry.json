@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Template name -> Klaviyo ID registry. Every entry tagged with language. See LANGUAGE-SEPARATION.md.",
-    "last_updated": "2026-04-16T20:00Z",
+    "last_updated": "2026-04-18T00:00Z",
     "klaviyo_account_id": "WARVNh",
     "klaviyo_edit_url_pattern": "https://www.klaviyo.com/email-editor/{id}/edit",
     "currency": "SAR",
@@ -12,6 +12,69 @@
     "founder_identity": {
       "ar": { "name": "سهام", "title": "شريكة مؤسِّسة · زن هير" },
       "en": { "name": "Seham", "title": "Co-Founder · Zen Hair" }
+    },
+    "welcome_flow_craft_pass_2026_04_18": {
+      "summary": "A+ craft pass on Welcome W1-W5 (AR). Pre-pass grade B-/75. Target A+/90+. Addresses 15 issues from 2-pass design+copy review.",
+      "changes_by_template": {
+        "welcome-1-final.html": [
+          "WHOLESALE REWRITE: MSA formal -> Hijazi peer-register founder voice (highest-CTR pattern per 180d data: 0.43-0.45%).",
+          "New H1 'صاحبتي،' replaces 'كودكِ: WELCOME10'. Added 'رسالة من سهام · مؤسِّسة' eyebrow.",
+          "Added '٥ دقائق' drumbeat (repeats in W2, W4, W5).",
+          "New P.S. teases W2 (primes next open) instead of explaining gift.",
+          "CTA copy changed 'أستخدم كودي' -> 'اختاري لونكِ' (more specific intent, ties to W3).",
+          "CTA destination changed from /collections/best-sellers -> /collections/clip-in-extensions (matches 'اختاري لونكِ' intent).",
+          "Added code-card gift tagline 'تُفاجئكِ عند الطلب' (creates curiosity without misnaming)."
+        ],
+        "welcome-2-final.html": [
+          "Founder title masculine -> feminine 'شريكة مؤسِّسة'.",
+          "Surfaced size guide (40/50cm) from buried P.S. into body paragraph 2.",
+          "Added '٥ دقائق' drumbeat in body.",
+          "New eyebrow '٣ من ٤ يختارنه' stacks above H1.",
+          "Code-card gift tagline added.",
+          "P.S. rewritten to tease W3 (color guide) instead of repeating body size info.",
+          "Preview text refreshed to match new tease."
+        ],
+        "welcome-3-final.html": [
+          "Fixed +٢٢ color claim vs 12-swatch image mismatch: copy now frames image as '١٢ الأكثر طلباً من أصل +٢٢'.",
+          "WhatsApp CTA: added TODO marker (966XXXXXXXXX) + inline comment for stylist number before send.",
+          "Added Tamara/Tabby installments line (3 installments, no interest) below CTA.",
+          "Founder title fixed to feminine.",
+          "Code-card gift tagline added.",
+          "P.S. rewritten to tease W4 ('بأريكِ الفرق في ٥ دقائق')."
+        ],
+        "welcome-4-final.html": [
+          "Fixed CTA BUG: hero-link + button both pointed to PDP /#reviews anchor (user lands on review section, not shop). Now both point to /discount/WELCOME10?redirect=%2Fproducts%2Fclip-in-extensions-9-pieces (direct-to-product with discount auto-applied).",
+          "CTA copy 'أقرأ التقييمات' -> 'أبغى هذي الكثافة' (intent matches destination and testimonial hook).",
+          "Founder title fixed to feminine.",
+          "Code-card gift tagline added."
+        ],
+        "welcome-5-final.html": [
+          "Killed hardcoded weekday: 'بعد يوم الخميس' -> 'بعد ٤٨ ساعة' (was broken in perpetual flow).",
+          "Eliminated title tautology: H1 differentiated from eyebrow + subject. Eyebrow still 'آخر فرصة · ٤٨ ساعة'. H1 now 'قبل ما يختفي WELCOME10'. Subhead moved to subtitle role: 'أكثر ٥ أسئلة نسمعها · جوابنا بدون مبالغة'.",
+          "Added referral P.S. ('أرسلي كودكِ لصاحبتكِ') as final hook at end of flow (no SAR amount — framed as founder gift).",
+          "Founder title fixed to feminine.",
+          "Code-card gift tagline added.",
+          "HTML <title> updated to match new H1."
+        ],
+        "all_5_templates": [
+          "Added footer progress indicator (●●○○○ · ٢ من ٥) to show subscriber their position in flow."
+        ]
+      },
+      "defaults_locked_in": {
+        "founder_title": "شريكة مؤسِّسة (feminine, matches registry.founder_identity.ar.title; supersedes the masculine 'شريك مؤسس' that was in VOICE-PROFILE-AR.md and all 5 templates pre-pass)",
+        "free_gift_framing": "'تُفاجئكِ عند الطلب' — mystery framing (no specific name) because actual welcome-gift SKU unknown. User can rename in all 5 code cards via single find/replace when confirmed.",
+        "whatsapp_number_w3": "Placeholder 966XXXXXXXXX + HTML comment TODO. Must be swapped before send.",
+        "installments": "Tamara + Tabby mentioned in W3 only (not every email, to avoid repetition)",
+        "referral_amount": "Not specified. 'هديّة شكر منّي شخصياً' framing. Switch to SAR amount if real referral reward is set up."
+      },
+      "still_open": [
+        "Confirm real WhatsApp stylist number and swap in W3",
+        "Confirm actual welcome-gift SKU and swap 'تُفاجئكِ عند الطلب' for named gift across 5 code cards if preferred",
+        "Archetype-b and archetype-c of W1 left untouched — if W1-final is the canonical, consider deleting archetypes to avoid confusion",
+        "VOICE-PROFILE-AR.md still lists sign-off as masculine 'شريك مؤسس' — reconcile with registry feminine or explicitly note the spelling standardization",
+        "Welcome flow in Klaviyo (RpUXJv) has 4 nodes per FLOW-MAP; confirm it has a 5th node or adjust W5 -> W4 consolidation"
+      ],
+      "expected_lift": "W1 founder-voice rewrite = highest. 180d AR data shows founder-letter subject pattern = 0.43-0.45% CTR (top of cohort). Welcome #1 is 100% open-rate-anchor of the flow — all downstream CTR depends on it."
     },
     "segmentation_audit_2026_04_16": {
       "summary": "Full-account audit of 63 segments. Found 3 real bugs + fixed. Post-fix quality: 5/5 coverage, 5/5 correctness, 5/5 hygiene.",
