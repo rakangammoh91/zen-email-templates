@@ -381,15 +381,15 @@
   "suppression_stack": ["QPaQg2","R7n5YH","RQvExN","RraB6N","S2hTN3","Sd3G5T","Sh5GnV","XDzbbr"],
   "suppression_stack_note": "XDzbbr (AI | Exclude | Never Engaged) added 2026-04-16 per founder approval. Stricter than R7n5YH/RQvExN: 10+ received + 0 opens/clicks alltime.",
   "thank_you_flow_ar": {
-    "ty-1": { "id": "Xa8dGZ", "day": 1, "file": "ar/templates/ty-1-final.html", "status": "live", "purpose": "Arrival reassurance", "language": "ar" },
-    "ty-2": { "id": "WJ9rUe", "day": 4, "file": "ar/templates/ty-2-final.html", "status": "live", "purpose": "Care guide", "language": "ar" },
-    "ty-3": { "id": "Th8rtT", "day": 8, "file": "ar/templates/ty-3-final.html", "status": "live", "purpose": "How-to-wear video", "language": "ar" },
+    "ty-1": { "id": "Xa8dGZ", "day": 1, "file": "ar/templates/thank-you-1-day1.html", "status": "live", "purpose": "Arrival reassurance", "language": "ar" },
+    "ty-2": { "id": "WJ9rUe", "day": 4, "file": "ar/templates/thank-you-2-day4.html", "status": "live", "purpose": "Care guide", "language": "ar" },
+    "ty-3": { "id": "Th8rtT", "day": 8, "file": "ar/templates/thank-you-3-day8.html", "status": "live", "purpose": "How-to-wear video", "language": "ar" },
     "ty-4": { "id": null, "day": null, "file": null, "status": "deleted", "purpose": "UGC ask (killed by founder)", "language": "ar" },
-    "ty-5": { "id": "Spp7Kh", "day": 25, "file": "ar/templates/ty-5-final.html", "status": "live", "purpose": "Written review ask", "language": "ar" },
-    "ty-6": { "id": "QS3vmG", "day": 40, "file": "ar/templates/ty-6-final.html", "status": "live", "purpose": "Ponytail cross-sell", "language": "ar" },
-    "ty-7a": { "id": "TwisrJ", "day": 60, "file": "ar/templates/ty-7a-final.html", "status": "live", "purpose": "Second set · repeat buyers", "cohort": "repeat", "language": "ar" },
-    "ty-7b": { "id": "Y5SMxB", "day": 60, "file": "ar/templates/ty-7b-final.html", "status": "rework-pending", "purpose": "Referral 150+150 · one-timers", "cohort": "one-timer", "blocker": "Headline treatment + mechanic (one-sided vs two-sided)", "language": "ar" },
-    "ty-8": { "id": "TKmHq7", "day": 90, "file": "ar/templates/ty-8-final.html", "status": "live", "purpose": "Check-in", "language": "ar" }
+    "ty-5": { "id": "Spp7Kh", "day": 25, "file": "ar/templates/thank-you-5-day25.html", "status": "live", "purpose": "Written review ask", "language": "ar" },
+    "ty-6": { "id": "QS3vmG", "day": 40, "file": "ar/templates/thank-you-6-day40.html", "status": "live", "purpose": "Ponytail cross-sell", "language": "ar" },
+    "ty-7a": { "id": "TwisrJ", "day": 60, "file": "ar/templates/thank-you-7a-day60-repeat.html", "status": "live", "purpose": "Second set · repeat buyers", "cohort": "repeat", "language": "ar" },
+    "ty-7b": { "id": "Y5SMxB", "day": 60, "file": "ar/templates/thank-you-7b-day60-referral.html", "status": "rework-pending", "purpose": "Referral 150+150 · one-timers", "cohort": "one-timer", "blocker": "Headline treatment + mechanic (one-sided vs two-sided)", "language": "ar" },
+    "ty-8": { "id": "TKmHq7", "day": 90, "file": "ar/templates/thank-you-8-day90.html", "status": "live", "purpose": "Check-in", "language": "ar" }
   },
   "welcome_flow_ar_v10": {
     "e1": { "id": null, "status": "pending", "language": "ar" },
