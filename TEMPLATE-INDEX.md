@@ -44,13 +44,15 @@ Trigger: Placed Order. Day 21 and Day 28 are **split by hair length** (20-inch b
 
 | Step | File | When | Purpose |
 |------|------|------|---------|
-| PP1 | `post-purchase-1-day1.html` | Day 1 | Arrival & reassurance |
-| PP2 | `post-purchase-2-day3.html` | Day 3 | Shipping / tracking |
-| PP3 | `post-purchase-3-day10.html` | Day 10 | Care tips |
-| PP4-20" | `post-purchase-4-day21-20inch.html` | Day 21 | Styling (for 20-inch buyers) |
-| PP4-24" | `post-purchase-4-day21-24inch.html` | Day 21 | Styling (for 24-inch buyers) |
-| PP5-20" | `post-purchase-5-day28-20inch.html` | Day 28 | Cross-sell (for 20-inch buyers) |
-| PP5-24" | `post-purchase-5-day28-24inch.html` | Day 28 | Cross-sell (for 24-inch buyers) |
+| PP1 | `post-purchase-1-day1.html` | Day 1 | Arrival prep + WhatsApp help |
+| PP2 | `post-purchase-2-day3-install.html` | Day 3 | Install video (deep-links to PDP video section) |
+| PP3 | `post-purchase-3-day10-review.html` | Day 10 | Review request (2 testimonials + CTA) |
+| PP4-20" | `post-purchase-4-day21-20inch.html` | Day 21 | Ponytail tease · daily/quick positioning |
+| PP4-24" | `post-purchase-4-day21-24inch.html` | Day 21 | Ponytail tease · events/length positioning |
+| PP5-20" | `post-purchase-5-day28-20inch.html` | Day 28 | Discount · **BONI150** · 999→849 SAR |
+| PP5-24" | `post-purchase-5-day28-24inch.html` | Day 28 | Discount · **BONI180** · 1,240→1,060 SAR |
+
+> **Shopify setup needed:** create discount code `BONI180` (180 SAR off, ponytail 24" variant only, 72-hour single-use). `BONI150` already exists.
 
 ---
 
