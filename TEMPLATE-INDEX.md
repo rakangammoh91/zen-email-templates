@@ -40,15 +40,17 @@ Trigger: Started Checkout, no Placed Order. Pick ONE variant (v1/v2/v3) to run; 
 
 ## 3. Post-Purchase Flow (5 steps · first-order nurture)
 
-Trigger: Placed Order. Day 21 and Day 28 have 20-second and 24-second video variants — pick one per step.
+Trigger: Placed Order. Day 21 and Day 28 are **split by hair length** (20-inch buyers vs 24-inch buyers) — each buyer gets the version matching what they purchased.
 
 | Step | File | When | Purpose |
 |------|------|------|---------|
-| PP1 | `post-purchase-1-day1.html` | Day 1 | Order confirmation vibe |
-| PP2 | `post-purchase-2-day3.html` | Day 3 | Shipping/tracking |
+| PP1 | `post-purchase-1-day1.html` | Day 1 | Arrival & reassurance |
+| PP2 | `post-purchase-2-day3.html` | Day 3 | Shipping / tracking |
 | PP3 | `post-purchase-3-day10.html` | Day 10 | Care tips |
-| PP4 | `post-purchase-4-day21-20s.html` OR `post-purchase-4-day21-24s.html` | Day 21 | Styling video (pick one video length) |
-| PP5 | `post-purchase-5-day28-20s.html` OR `post-purchase-5-day28-24s.html` | Day 28 | Second-look cross-sell |
+| PP4-20" | `post-purchase-4-day21-20inch.html` | Day 21 | Styling (for 20-inch buyers) |
+| PP4-24" | `post-purchase-4-day21-24inch.html` | Day 21 | Styling (for 24-inch buyers) |
+| PP5-20" | `post-purchase-5-day28-20inch.html` | Day 28 | Cross-sell (for 20-inch buyers) |
+| PP5-24" | `post-purchase-5-day28-24inch.html` | Day 28 | Cross-sell (for 24-inch buyers) |
 
 ---
 
