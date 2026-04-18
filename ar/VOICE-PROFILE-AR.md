@@ -126,7 +126,7 @@ Based on TY body corpus imperatives:
 | 2 | شعركِ | 10 | your hair (fem) |
 | 3 | لكِ | 9 | for you (fem) |
 | 4 | المتجر | 9 | the store |
-| 5 | شريك | 8 | partner (in sign-off "شريك مؤسس") |
+| 5 | شريك | 8 | partner (in sign-off "شريكة مؤسِّسة") |
 | 6 | مؤسس | 8 | founder |
 | 7 | هير | 8 | Hair (brand) |
 | 8 | ١٥٠ | 8 | 150 (referral credit amount) |
@@ -162,7 +162,7 @@ Based on TY body corpus imperatives:
 
 | Phrase | Count |
 |---|---|
-| سهام شريك مؤسس | 8 (sign-off) |
+| سهام شريكة مؤسِّسة | 8 (sign-off) |
 | للبنات اللي جرّبن | 3 |
 | بعد أيام بأرسل | 2 |
 | أيام بأرسل لكِ | 2 |
@@ -178,7 +178,7 @@ Based on TY body corpus imperatives:
 | Ritual | Rate | Value |
 |---|---|---|
 | **P.S.** | 8/8 = **100%** | Every TY has a P.S., usually a soft next-step or a "reply if X" hook |
-| **Sign-off** | 8/8 = **100%** | Canonical form: `سهام · شريك مؤسس زن هير` (Seham · Co-founder, Zen Hair) — never `— سهام` alone, always the role |
+| **Sign-off** | 8/8 = **100%** | Canonical form: `سهام · شريكة مؤسِّسة زن هير` (Seham · Co-founder, Zen Hair) — never `— سهام` alone, always the role |
 | **Hero image** | 8/8 | Hero image present in every TY |
 | **Hero-only vs hero+body images** | ~6 hero+body / 2 hero-only | Most emails mix hero + inline product/screenshot |
 | **Text-only** | 0/8 | No text-only emails in TY flow |
