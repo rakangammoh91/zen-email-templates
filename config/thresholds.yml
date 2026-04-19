@@ -1,6 +1,7 @@
-# Alert thresholds for Zen Hair flow monitoring.
+# Alert thresholds for Zen Hair email marketing agent.
 # Tune these without touching code. Every automated workflow reads this file.
 
+# ========== FLOWS ==========
 alerts:
   # Kill switch — pauses the flow if breached
   spam_complaint_rate_pct: 0.1
@@ -23,9 +24,52 @@ timeframes:
   monthly: last_30_days
 
 # Minimum recipients before a flow is eligible for alerting
-# (avoids false positives on tiny samples like Thank You)
 min_recipients_for_alert: 50
 
-# Dead-man's switch: if no weekly snapshot exists for this many days,
-# the watchdog workflow pings Telegram
+# Dead-man's switch: if no weekly snapshot exists for this many days
 watchdog_max_staleness_days: 8
+
+# ========== CAMPAIGNS ==========
+campaigns:
+  # Per-campaign alert thresholds (same spirit as flows)
+  bounce_rate_pct: 3.0
+  unsubscribe_rate_pct: 0.5
+  spam_complaint_rate_pct: 0.1
+  # Below-average performance trigger (vs. trailing 90d median)
+  open_rate_underperformance_pp: 10.0  # 10pp below median = underperformer
+  click_rate_underperformance_pp: 2.0
+  min_recipients_for_alert: 100
+
+# ========== SEGMENTS & LIST HEALTH ==========
+list_health:
+  # Net reach (growth - churn) going negative this many weeks = alert
+  net_reach_negative_weeks: 3
+  # Engaged-% (opened in last 90d) drop
+  engaged_pct_drop_pp: 5.0
+  # Suppression growth (unusual spike = deliverability signal)
+  suppression_weekly_growth_pct: 10.0
+  # Unengaged segment size as % of total (above = sunset-flow candidate)
+  unengaged_pct_sunset_trigger: 40.0
+
+# ========== DELIVERABILITY INFRASTRUCTURE ==========
+deliverability:
+  sending_domain: zenhairshop.com
+  # DMARC policy — "none" is weakest, "quarantine"/"reject" are strong
+  dmarc_min_policy: quarantine   # alert if current policy is weaker
+  # Klaviyo SPF include (Klaviyo's sending infra)
+  spf_required_includes:
+    - sendgrid.net
+    - _spf.klaviyo.com
+  # DKIM selectors Klaviyo uses
+  dkim_selectors:
+    - kl1._domainkey
+    - kl2._domainkey
+
+# ========== REVENUE ==========
+revenue:
+  # Placed Order metric
+  conversion_metric_id: RFkPcF
+  # If flow-attributed revenue share drops below this, acquisition gap
+  min_flow_revenue_share_pct: 20.0
+  # RPAS (revenue per active subscriber / month) target in SAR
+  rpas_monthly_target_sar: 2.0

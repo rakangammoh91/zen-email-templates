@@ -94,6 +94,7 @@ All times Asia/Amman. Cron in YAML is UTC.
 | Daily 08:00 | bounce / unsub / spam check (last_1_days) | only on alert | only on alert |
 | Monday 07:00 | weekly snapshot + WoW delta | yes | always (digest) |
 | 1st of month 07:00 | 30d rollup + auto strategy-review issue | yes | issue link |
+| 1st of month 08:00 | **comprehensive audit** (flows + campaigns + segments + deliverability + revenue + metrics) | yes | exec summary |
 | Tuesday 09:00 | watchdog on missing weekly snapshot | no | only if stale |
 
 ---
@@ -113,6 +114,12 @@ All times Asia/Amman. Cron in YAML is UTC.
 - Bounce-candidate discovery (`find_bouncers`) — 2+ bounces/30d → CSV
 - Freshness watchdog
 - Monthly strategy-review issue creation
+- **Comprehensive monthly audit** (`comprehensive_audit`) — runs 7 audit modules
+  and writes a professional markdown report to `docs/audits/YYYY-MM-DD-full-audit.md`
+  with executive summary, top-3 actions, and prescribed action per finding.
+  Covers: flows, campaigns, segments + list health, deliverability
+  infrastructure (SPF/DKIM/DMARC DNS), per-email weak links, top-level metric
+  trajectory, and revenue attribution (flow share + RPAS).
 
 **Automated scoped-write (Tier 1 — dry-run by default):**
 - Profile suppressions (`apply_suppressions`) — reads the bouncer CSV and

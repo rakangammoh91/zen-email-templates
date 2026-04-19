@@ -75,7 +75,8 @@ class KlaviyoClient:
 
     def get(self, path: str, params: dict | None = None) -> dict:
         if params:
-            path = f"{path}?{urllib.parse.urlencode(params)}"
+            # safe='[]' preserves Klaviyo's bracket syntax (additional-fields[segment])
+            path = f"{path}?{urllib.parse.urlencode(params, safe='[]')}"
         return self._request("GET", path)
 
     def post(self, path: str, body: dict) -> dict:
@@ -114,3 +115,107 @@ class KlaviyoClient:
 
     def get_flow(self, flow_id: str) -> dict:
         return self.get(f"/flows/{flow_id}/")
+
+    # ---- paginated helpers ----
+    def paginate(self, path: str, params: dict | None = None, max_pages: int = 50) -> list[dict]:
+        """Follow cursor pagination; returns concatenated data[] entries."""
+        results: list[dict] = []
+        cur_path = path
+        cur_params = params.copy() if params else {}
+        for _ in range(max_pages):
+            page = self.get(cur_path, cur_params if cur_params else None)
+            data = page.get("data") or []
+            results.extend(data)
+            next_link = (page.get("links") or {}).get("next")
+            if not next_link:
+                break
+            # next_link is an absolute URL — strip base and re-request
+            cur_path = next_link.replace(self.base, "")
+            cur_params = None  # already encoded in next link
+        return results
+
+    # ---- campaigns ----
+    def list_campaigns(self, channel: str = "email", since_iso: str | None = None) -> list[dict]:
+        filt = f'equals(messages.channel,"{channel}")'
+        if since_iso:
+            filt = f"and({filt},greater-or-equal(scheduled_at,{since_iso}))"
+        return self.paginate("/campaigns/", {"filter": filt})
+
+    def campaign_values_report(
+        self,
+        campaign_ids: list[str],
+        statistics: list[str],
+        timeframe_key: str,
+        conversion_metric_id: str,
+    ) -> dict:
+        if len(campaign_ids) == 1:
+            filt = f'equals(campaign_id,"{campaign_ids[0]}")'
+        else:
+            quoted = ",".join(f'"{c}"' for c in campaign_ids)
+            filt = f"contains-any(campaign_id,[{quoted}])"
+        body = {
+            "data": {
+                "type": "campaign-values-report",
+                "attributes": {
+                    "statistics": statistics,
+                    "timeframe": {"key": timeframe_key},
+                    "conversion_metric_id": conversion_metric_id,
+                    "filter": filt,
+                },
+            }
+        }
+        return self.post("/campaign-values-reports/", body)
+
+    # ---- segments & lists ----
+    def list_segments(self) -> list[dict]:
+        # profile_count not available as additional-field for segments in this revision;
+        # fetch basic inventory, then call /segments/{id}/ individually for counts when needed.
+        return self.paginate("/segments/")
+
+    def list_lists(self) -> list[dict]:
+        try:
+            return self.paginate("/lists/", {"additional-fields[list]": "profile_count"})
+        except RuntimeError:
+            return self.paginate("/lists/")
+
+    def get_segment_profile_count(self, segment_id: str) -> int | None:
+        try:
+            resp = self.get(f"/segments/{segment_id}/", {"additional-fields[segment]": "profile_count"})
+            return (resp.get("data", {}).get("attributes") or {}).get("profile_count")
+        except Exception:
+            return None
+
+    # ---- metrics ----
+    def list_metrics(self) -> list[dict]:
+        return self.paginate("/metrics/")
+
+    def metric_aggregate(
+        self,
+        metric_id: str,
+        measurements: list[str],
+        interval: str,
+        timezone: str,
+        start_iso: str,
+        end_iso: str,
+    ) -> dict:
+        body = {
+            "data": {
+                "type": "metric-aggregate",
+                "attributes": {
+                    "metric_id": metric_id,
+                    "measurements": measurements,
+                    "interval": interval,
+                    "timezone": timezone,
+                    "filter": [
+                        f"greater-or-equal(datetime,{start_iso})",
+                        f"less-than(datetime,{end_iso})",
+                    ],
+                },
+            }
+        }
+        return self.post("/metric-aggregates/", body)
+
+    # ---- flow message (per-email) ----
+    def get_flow_messages(self, flow_id: str) -> list[dict]:
+        """Flow actions → messages. Used to resolve message IDs to subjects."""
+        return self.paginate(f"/flows/{flow_id}/flow-actions/", {"include": "flow-messages"})
