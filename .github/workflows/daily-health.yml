@@ -1,0 +1,50 @@
+name: daily-health
+# Pulls last_1_days for every tracked flow and alerts on bounce/unsub/spam.
+# Only commits on alert — keeps history clean on green days.
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # 08:00 Asia/Amman (UTC+3)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  pull-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r scripts/agent/requirements.txt
+
+      - name: Pull daily snapshot
+        env:
+          KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+        run: python -m scripts.agent.pull_flow_report --timeframe last_1_days --tag daily
+
+      - name: Detect anomalies
+        id: detect
+        continue-on-error: true
+        run: python -m scripts.agent.detect_anomalies --tag daily --json-out /tmp/anomalies.json
+
+      - name: Notify on warning/critical
+        if: steps.detect.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m scripts.agent.telegram_notify --from-anomalies /tmp/anomalies.json
+
+      - name: Commit daily snapshot only if alert
+        if: steps.detect.outcome == 'failure'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/flow-reports/
+          git diff --cached --quiet || git commit -m "chore(perf): daily alert snapshot $(date -u +%F)"
+          git push

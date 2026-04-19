@@ -1,0 +1,53 @@
+name: watchdog
+# Dead-man's switch: if no weekly snapshot landed in the last 8 days, ping Telegram.
+
+on:
+  schedule:
+    - cron: "0 6 * * 2"   # Tuesday 09:00 Asia/Amman — day after weekly should have run
+  workflow_dispatch: {}
+
+jobs:
+  check-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r scripts/agent/requirements.txt
+
+      - name: Check weekly snapshot freshness
+        id: check
+        run: |
+          python - <<'PY'
+          import os, sys, glob, datetime, pathlib, yaml
+          root = pathlib.Path(".")
+          thresh = yaml.safe_load(open("config/thresholds.yml"))
+          max_days = thresh.get("watchdog_max_staleness_days", 8)
+          files = sorted(glob.glob("data/flow-reports/*-weekly.json"))
+          if not files:
+              print("::set-output name=stale::true")
+              print("::set-output name=reason::no weekly snapshots exist")
+              sys.exit(0)
+          latest = pathlib.Path(files[-1])
+          # Filename is YYYY-MM-DD-weekly.json
+          d = datetime.date.fromisoformat(latest.stem.split("-weekly")[0])
+          age = (datetime.date.today() - d).days
+          if age > max_days:
+              print(f"::set-output name=stale::true")
+              print(f"::set-output name=reason::latest weekly snapshot is {age} days old ({latest.name})")
+          else:
+              print(f"Latest weekly snapshot is {age} days old — fresh.")
+              print("::set-output name=stale::false")
+          PY
+
+      - name: Alert if stale
+        if: steps.check.outputs.stale == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m scripts.agent.telegram_notify \
+            --text "🐕 *Watchdog* — weekly snapshot missing. ${{ steps.check.outputs.reason }}. Check GitHub Actions."

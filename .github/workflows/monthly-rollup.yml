@@ -1,0 +1,62 @@
+name: monthly-rollup
+# 1st of month 07:00 Asia/Amman. Full 30d snapshot + strategy review issue.
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"   # 1st of month 07:00 Asia/Amman
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  rollup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r scripts/agent/requirements.txt
+
+      - name: Pull monthly snapshot
+        env:
+          KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+        run: python -m scripts.agent.pull_flow_report --timeframe last_30_days --tag monthly
+
+      - name: Append to performance log
+        run: python -m scripts.agent.append_log --tag monthly
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/flow-reports/ docs/flows-performance-log.md
+          git diff --cached --quiet || git commit -m "chore(perf): monthly rollup $(date -u +%F)"
+          git push
+
+      - name: Open strategy-review issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Monthly strategy review · ${today}`,
+              body: [
+                `The monthly rollup for ${today} has been committed.`,
+                ``,
+                `**Review checklist:**`,
+                `- [ ] Read \`docs/flows-performance-log.md\` monthly section`,
+                `- [ ] Compare [RG] drafts vs [FINAL] live for any swap candidates`,
+                `- [ ] Log decisions under Learnings section`,
+                `- [ ] Flag weakest-performing flow for next rebuild`,
+                ``,
+                `Use this issue as the starting prompt for the review session with Claude.`,
+              ].join("\n"),
+              labels: ["strategy-review"],
+            });

@@ -1,0 +1,31 @@
+# Alert thresholds for Zen Hair flow monitoring.
+# Tune these without touching code. Every automated workflow reads this file.
+
+alerts:
+  # Kill switch — pauses the flow if breached
+  spam_complaint_rate_pct: 0.1
+
+  # Warning — Telegram ping, does not pause
+  bounce_rate_pct: 3.0
+  unsubscribe_rate_pct: 0.5
+
+  # Regression — compares latest snapshot vs. prior week
+  open_rate_wow_drop_pp: 5.0      # percentage-point absolute drop
+  rpr_wow_drop_pct: 25.0          # relative % drop vs prior week
+
+  # Protected flows: use stricter thresholds (half the tolerance)
+  protected_multiplier: 0.5
+
+# What timeframes each job pulls
+timeframes:
+  daily: last_1_days
+  weekly: last_7_days
+  monthly: last_30_days
+
+# Minimum recipients before a flow is eligible for alerting
+# (avoids false positives on tiny samples like Thank You)
+min_recipients_for_alert: 50
+
+# Dead-man's switch: if no weekly snapshot exists for this many days,
+# the watchdog workflow pings Telegram
+watchdog_max_staleness_days: 8

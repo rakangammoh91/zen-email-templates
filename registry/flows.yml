@@ -1,0 +1,205 @@
+# Zen Hair · Machine-readable flow registry
+# Source of truth for all automation. docs/flows-registry.md is rendered FROM this.
+# Schema version: 1
+
+account:
+  id: WARVNh
+  name: متجر زن هير
+  currency: SAR
+  timezone: Asia/Amman
+  sender_name: "سهام · زن هير"
+  sender_email: info@zenhairshop.com
+
+conversion_metric:
+  id: RFkPcF
+  name: Placed Order
+
+# Flows we actively track + measure
+flows:
+  # ---- [FINAL] Live Arabic (baseline · will be replaced) ----
+  - id: RpUXJv
+    slug: welcome-ar-legacy
+    name: AM · AR · Welcome
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Added to List
+    replacement: UeYeck
+    protected: false
+    baseline_30d:
+      recipients: 1773
+      open_rate_pct: 27.25
+      rpr_sar: 2.88
+
+  - id: UcxCCH
+    slug: thank-you-ar-legacy
+    name: AM · AR · Customer Thank You
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: QSFHaw
+    protected: false
+    baseline_30d:
+      recipients: 80
+      open_rate_pct: 43.59
+
+  - id: VKsTPF
+    slug: browse-abandonment-ar-legacy
+    name: AM · AR · Browse Abandonment
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: WKnDMV
+    protected: false
+    baseline_30d:
+      recipients: 1435
+      open_rate_pct: 29.78
+      rpr_sar: 2.81
+
+  - id: UQqPVR
+    slug: site-abandonment-ar-legacy
+    name: AM · AR · Site-abandonment
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: null
+    protected: false
+    baseline_30d:
+      recipients: 254
+      open_rate_pct: 24.59
+
+  - id: Xkg5DZ
+    slug: abandoned-cart-ar-legacy
+    name: AM · AR · Abandoned Cart
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: null
+    protected: true  # RPR leader — alert louder on regression
+    baseline_30d:
+      recipients: 612
+      open_rate_pct: 37.10
+      rpr_sar: 3.66
+
+  - id: Xu8gx8
+    slug: abandoned-checkout-ar-legacy
+    name: AM · AR · Abandoned Checkout
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: TEkrGC
+    protected: false
+    baseline_30d:
+      recipients: 213
+      open_rate_pct: 32.06
+
+  - id: TqHqU2
+    slug: referral-ar-legacy
+    name: AM · AR · Referral
+    status: live
+    tier: legacy
+    language: ar
+    trigger: Metric
+    replacement: null
+    protected: false
+    baseline_30d:
+      recipients: 923
+      open_rate_pct: 32.75
+
+  - id: Ugfkcj
+    slug: fulfilled-order-ar
+    name: AM · AR · Fulfilled Order
+    status: live
+    tier: transactional
+    language: ar
+    trigger: Metric
+    protected: false
+    track_performance: false  # transactional — excluded from alerting
+
+  # ---- [RG] Rebuilt drafts (our work · awaiting QA → swap) ----
+  - id: WKnDMV
+    slug: browse-abandoned-ar
+    name: "[RG] AR · Browse Abandoned"
+    status: draft
+    tier: rebuilt
+    language: ar
+    trigger: Viewed Product
+    spec: flows/browse-abandoned-ar/spec.md
+    replaces: VKsTPF
+    emails: 4
+
+  - id: TEkrGC
+    slug: abandoned-checkout-ar
+    name: "[RG] AR · Abandoned Checkout"
+    status: draft
+    tier: rebuilt
+    language: ar
+    trigger: Checkout Started
+    replaces: Xu8gx8
+    emails: 4
+
+  - id: UeYeck
+    slug: welcome-ar
+    name: "[RG] AR · Welcome · Founder Voice"
+    status: draft
+    tier: rebuilt
+    language: ar
+    trigger: Added to List
+    replaces: RpUXJv
+    emails: 5
+
+  - id: QSFHaw
+    slug: post-purchase-ar
+    name: "[RG] AR · Post-Purchase"
+    status: draft
+    tier: rebuilt
+    language: ar
+    trigger: Placed Order
+    replaces: UcxCCH
+
+  # ---- English legacy (archive candidates) ----
+  - id: XVkXi4
+    name: AM · EN · Welcome
+    status: live
+    tier: archive_candidate
+    language: en
+    track_performance: false
+
+  - id: RTdRCz
+    name: AM · EN · Site-abandonment
+    status: live
+    tier: archive_candidate
+    language: en
+    track_performance: false
+
+  - id: SnVUkb
+    name: AM · EN · Browse Abandonment
+    status: live
+    tier: archive_candidate
+    language: en
+    track_performance: false
+
+  - id: Y6saqP
+    name: AM · EN · Abandoned Checkout
+    status: live
+    tier: archive_candidate
+    language: en
+    track_performance: false
+
+  # ---- Clutter to delete ----
+  - id: SbGFTW
+    name: Essential Flow Recommendation_
+    status: draft
+    tier: delete
+    track_performance: false
+
+  - id: U8aHXY
+    name: Essential Flow Recommendation_
+    status: draft
+    tier: delete
+    track_performance: false

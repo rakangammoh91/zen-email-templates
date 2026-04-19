@@ -1,0 +1,82 @@
+{
+  "pulled_at": "2026-04-19T00:00:00+00:00",
+  "timeframe": "last_30_days",
+  "tag": "baseline",
+  "conversion_metric_id": "RFkPcF",
+  "note": "Seeded from interactive Klaviyo MCP pull on 2026-04-19. Pre-[RG]-swap baseline. Subsequent snapshots are written by scripts/agent/pull_flow_report.py via GitHub Actions.",
+  "flows": [
+    {
+      "flow_id": "RpUXJv",
+      "flow_name": "AM · AR · Welcome",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 1773,
+        "open_rate": 0.2725,
+        "revenue_per_recipient": 2.88
+      }
+    },
+    {
+      "flow_id": "UcxCCH",
+      "flow_name": "AM · AR · Customer Thank You",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 80,
+        "open_rate": 0.4359
+      }
+    },
+    {
+      "flow_id": "VKsTPF",
+      "flow_name": "AM · AR · Browse Abandonment",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 1435,
+        "open_rate": 0.2978,
+        "revenue_per_recipient": 2.81
+      }
+    },
+    {
+      "flow_id": "UQqPVR",
+      "flow_name": "AM · AR · Site-abandonment",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 254,
+        "open_rate": 0.2459
+      }
+    },
+    {
+      "flow_id": "Xkg5DZ",
+      "flow_name": "AM · AR · Abandoned Cart",
+      "tier": "legacy",
+      "protected": true,
+      "statistics": {
+        "recipients": 612,
+        "open_rate": 0.3710,
+        "revenue_per_recipient": 3.66
+      }
+    },
+    {
+      "flow_id": "Xu8gx8",
+      "flow_name": "AM · AR · Abandoned Checkout",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 213,
+        "open_rate": 0.3206
+      }
+    },
+    {
+      "flow_id": "TqHqU2",
+      "flow_name": "AM · AR · Referral",
+      "tier": "legacy",
+      "protected": false,
+      "statistics": {
+        "recipients": 923,
+        "open_rate": 0.3275
+      }
+    }
+  ]
+}

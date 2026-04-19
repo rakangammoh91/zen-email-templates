@@ -1,0 +1,50 @@
+name: weekly-snapshot
+# Mondays 07:00 Asia/Amman. Pulls last_7_days, appends to perf log, alerts on WoW regressions.
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"   # Monday 07:00 Asia/Amman (UTC+3)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r scripts/agent/requirements.txt
+
+      - name: Pull weekly snapshot
+        env:
+          KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+        run: python -m scripts.agent.pull_flow_report --timeframe last_7_days --tag weekly
+
+      - name: Append to performance log
+        run: python -m scripts.agent.append_log --tag weekly
+
+      - name: Detect anomalies
+        id: detect
+        continue-on-error: true
+        run: python -m scripts.agent.detect_anomalies --tag weekly --json-out /tmp/anomalies.json
+
+      - name: Notify (always — weekly digest)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m scripts.agent.telegram_notify --from-anomalies /tmp/anomalies.json
+
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/flow-reports/ docs/flows-performance-log.md
+          git diff --cached --quiet || git commit -m "chore(perf): weekly snapshot $(date -u +%F)"
+          git push
