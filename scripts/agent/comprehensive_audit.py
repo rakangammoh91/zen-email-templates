@@ -17,8 +17,10 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 AUDITS_DIR = REPO / "docs" / "audits"
-TMP = Path("/tmp") if Path("/tmp").exists() else REPO / "tmp"
-TMP.mkdir(exist_ok=True)
+import platform
+# Use native /tmp on Linux/macOS (GitHub Actions runners), repo-local tmp on Windows
+TMP = Path("/tmp") if platform.system() != "Windows" else (REPO / "tmp")
+TMP.mkdir(parents=True, exist_ok=True)
 
 
 def _run(module: str, extra_args: list[str], out_path: Path) -> dict | None:
@@ -88,7 +90,7 @@ def main() -> int:
     critical = [f for f in all_findings if f.get("severity") == "critical"]
     warnings = [f for f in all_findings if f.get("severity") == "warning"]
     infos = [f for f in all_findings if f.get("severity") == "info"]
-    status = "🚨 CRITICAL" if critical else ("⚠️ WARNING" if warnings else "✅ HEALTHY")
+    status = "🔴 CRITICAL" if critical else ("🟠 WARNING" if warnings else "🟢 HEALTHY")
 
     lines.append("## Executive summary")
     lines.append("")

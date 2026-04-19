@@ -38,7 +38,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -f /tmp/exec_summary.txt ]; then
-            python -m scripts.agent.telegram_notify --text "$(cat /tmp/exec_summary.txt)"
+            python -m scripts.agent.telegram_notify --from-audit /tmp/exec_summary.txt
           fi
 
       - name: Commit audit report
