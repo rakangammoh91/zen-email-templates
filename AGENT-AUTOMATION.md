@@ -100,19 +100,32 @@ All times Asia/Amman. Cron in YAML is UTC.
 
 ## What's automated vs. what's judgment
 
-**Automated (cloud, zero human touch):**
-- Data pulls from Klaviyo
-- Threshold-based regression detection
-- Telegram digests and alerts
-- Performance log appends
+**Automated read-only (cloud, zero human touch):**
+- Data pulls from Klaviyo (`pull_flow_report`)
+- Threshold-based regression detection (`detect_anomalies`)
+- Telegram digests and alerts (`telegram_notify`)
+- Performance log appends (`append_log`)
+- Auto-learnings digest every week (`write_learnings`)
+- Auto GitHub issue per alert (`open_issues`) — deduplicated by title
+- Auto rewrite brief on subject regressions (`propose_rewrites`) — writes
+  `flows/<slug>/proposed-rewrites/YYYY-MM-DD.md` with current subjects,
+  regression data, and 5 approach templates ready for next session
+- Bounce-candidate discovery (`find_bouncers`) — 2+ bounces/30d → CSV
 - Freshness watchdog
 - Monthly strategy-review issue creation
 
+**Automated scoped-write (Tier 1 — dry-run by default):**
+- Profile suppressions (`apply_suppressions`) — reads the bouncer CSV and
+  calls Klaviyo `profile-suppression-bulk-create-jobs/`. Cron always runs
+  **dry-run** (writes a decision log only). Passing `--live` manually is
+  the only way to actually suppress. Reversible via Klaviyo UI.
+
 **Not automated (intentionally — requires a Claude session):**
 - Flow rebuilds in the Klaviyo UI
-- Subject-line rewrites (content-continuity calls)
+- Subject-line rewrites — agent *proposes*, session *decides*
 - Draft → Live promotion
 - Pausing a flow on spam alert (Telegram tells you — you pause)
+- Live profile suppression — dry-run ships; live requires manual `--live`
 
 ---
 

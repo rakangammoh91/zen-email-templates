@@ -14,3 +14,7 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
+
+# Agent data — contains PII (emails, profile IDs). Never commit.
+data/suppression-candidates/
+data/suppression-log/

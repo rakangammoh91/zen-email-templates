@@ -1,5 +1,6 @@
 name: weekly-snapshot
-# Mondays 07:00 Asia/Amman. Pulls last_7_days, appends to perf log, alerts on WoW regressions.
+# Mondays 07:00 Asia/Amman. Pulls last_7_days, appends to perf log,
+# auto-writes learnings, proposes rewrites on regression, alerts via Telegram + Issues.
 
 on:
   schedule:
@@ -8,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   snapshot:
@@ -30,21 +32,46 @@ jobs:
       - name: Append to performance log
         run: python -m scripts.agent.append_log --tag weekly
 
+      - name: Write auto-learnings digest
+        run: python -m scripts.agent.write_learnings --history-weeks 4
+
       - name: Detect anomalies
         id: detect
         continue-on-error: true
         run: python -m scripts.agent.detect_anomalies --tag weekly --json-out /tmp/anomalies.json
 
-      - name: Notify (always — weekly digest)
+      - name: Propose rewrites for regressed flows
+        if: steps.detect.outcome == 'failure'
+        run: python -m scripts.agent.propose_rewrites --anomalies /tmp/anomalies.json
+
+      - name: Open GitHub issues for alerts
+        if: steps.detect.outcome == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m scripts.agent.open_issues --anomalies /tmp/anomalies.json
+
+      - name: Telegram digest (always — green or alert)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python -m scripts.agent.telegram_notify --from-anomalies /tmp/anomalies.json
 
+      - name: Find bounce-candidate profiles (read-only)
+        env:
+          KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+        run: python -m scripts.agent.find_bouncers --days 30 --min-bounces 2
+        continue-on-error: true
+
+      - name: Apply suppressions (DRY-RUN only in cron — no --live)
+        env:
+          KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+        run: python -m scripts.agent.apply_suppressions
+        continue-on-error: true
+
       - name: Commit + push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/flow-reports/ docs/flows-performance-log.md
+          git add data/ docs/flows-performance-log.md flows/*/proposed-rewrites/ || true
           git diff --cached --quiet || git commit -m "chore(perf): weekly snapshot $(date -u +%F)"
           git push

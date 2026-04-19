@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   pull-and-check:
@@ -39,6 +40,12 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python -m scripts.agent.telegram_notify --from-anomalies /tmp/anomalies.json
+
+      - name: Open GitHub issues for alerts
+        if: steps.detect.outcome == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m scripts.agent.open_issues --anomalies /tmp/anomalies.json
 
       - name: Commit daily snapshot only if alert
         if: steps.detect.outcome == 'failure'
