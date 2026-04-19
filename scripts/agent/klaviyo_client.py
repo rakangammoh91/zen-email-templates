@@ -12,6 +12,13 @@ import urllib.parse
 import urllib.request
 from typing import Any
 
+# Load .env for local runs. In GitHub Actions, env vars come from secrets directly.
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 REVISION = "2024-10-15"
 
 
@@ -87,6 +94,11 @@ class KlaviyoClient:
         timeframe_key: one of 'last_1_days', 'last_7_days', 'last_30_days',
                        'last_90_days', 'last_365_days', 'this_week', etc.
         """
+        if len(flow_ids) == 1:
+            flow_filter = f'equals(flow_id,"{flow_ids[0]}")'
+        else:
+            quoted = ",".join(f'"{fid}"' for fid in flow_ids)
+            flow_filter = f"contains-any(flow_id,[{quoted}])"
         body = {
             "data": {
                 "type": "flow-values-report",
@@ -94,10 +106,7 @@ class KlaviyoClient:
                     "statistics": statistics,
                     "timeframe": {"key": timeframe_key},
                     "conversion_metric_id": conversion_metric_id,
-                    "filter": "and("
-                    + ",".join(f"equals(flow_id,\"{fid}\")" for fid in flow_ids[:1])
-                    + ")" if len(flow_ids) == 1
-                    else f"any(flow_id,[{','.join(chr(34)+fid+chr(34) for fid in flow_ids)}])",
+                    "filter": flow_filter,
                 },
             }
         }

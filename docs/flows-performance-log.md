@@ -58,6 +58,18 @@ _(Log each [RG] → [FINAL] replacement here with pre-swap and post-swap 30d met
 
 ## Weekly snapshots
 
+### Week of 2026-04-19
+
+| Flow | ID | Recipients | Open | Click | Conv | RPR | Δ open vs prior |
+|------|----|-----------:|-----:|------:|-----:|----:|-----------------|
+| AM · AR · Browse Abandonment | `VKsTPF` | 523 | 28.11% | 1.15% | 0.19% | 1.97 | — |
+| AM · AR · Welcome | `RpUXJv` | 356 | 24.16% | 0.56% | 0.00% | — | — |
+| AM · AR · Referral | `TqHqU2` | 256 | 28.91% | 1.17% | 0.00% | — | — |
+| AM · AR · Abandoned Cart | `Xkg5DZ` | 189 | 30.16% | 0.53% | 0.00% | — | — |
+| AM · AR · Abandoned Checkout | `Xu8gx8` | 103 | 33.98% | 1.94% | 0.00% | — | — |
+| AM · AR · Site-abandonment | `UQqPVR` | 58 | 24.14% | 0.00% | 0.00% | — | — |
+| AM · AR · Customer Thank You | `UcxCCH` | 21 | 33.33% | 0.00% | 0.00% | — | — |
+
 _(Append newest on top. Format: one table per week.)_
 
 ### Week of YYYY-MM-DD

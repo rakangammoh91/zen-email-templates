@@ -78,23 +78,68 @@ def pull(timeframe: str, tag: str) -> Path:
     print(f"Pulling {timeframe} for {len(flow_ids)} flows...")
     resp = client.flow_values_report(flow_ids, STATISTICS, timeframe, conv_metric)
 
-    # Normalize: attach flow names so the snapshot is self-describing
+    # Klaviyo returns rows grouped by flow_message (one row per email in a flow).
+    # Aggregate to flow level: sum counts, recompute rates as weighted averages.
     by_id = {f["id"]: f for f in flows}
     results = resp.get("data", {}).get("attributes", {}).get("results", [])
-    enriched = []
+
+    COUNT_FIELDS = {"recipients", "opens", "opens_unique", "clicks", "clicks_unique",
+                    "bounced", "unsubscribes", "spam_complaints", "conversions",
+                    "delivered", "conversion_value"}
+    # rate = numerator / denominator (recipients, unless otherwise noted)
+    RATE_NUMERATORS = {
+        "open_rate": "opens_unique",
+        "click_rate": "clicks_unique",
+        "click_to_open_rate": "clicks_unique",  # denom = opens_unique
+        "bounce_rate": "bounced",
+        "unsubscribe_rate": "unsubscribes",
+        "spam_complaint_rate": "spam_complaints",
+        "conversion_rate": "conversions",
+        "delivery_rate": "delivered",
+    }
+
+    agg: dict[str, dict] = {}
     for row in results:
         fid = row.get("groupings", {}).get("flow_id")
+        if not fid:
+            continue
+        vals = row.get("statistics", {}) or {}
+        bucket = agg.setdefault(fid, {k: 0 for k in COUNT_FIELDS})
+        for k in COUNT_FIELDS:
+            v = vals.get(k)
+            if v is not None:
+                bucket[k] = bucket.get(k, 0) + float(v)
+
+    def safe_div(num: float, den: float) -> float:
+        return (num / den) if den else 0.0
+
+    enriched = []
+    for fid, counts in agg.items():
         meta = by_id.get(fid, {})
-        values = row.get("statistics", {})
+        rec = counts.get("recipients", 0)
+        opens_u = counts.get("opens_unique", 0)
+        stats = {
+            **counts,
+            "open_rate": safe_div(opens_u, rec),
+            "click_rate": safe_div(counts.get("clicks_unique", 0), rec),
+            "click_to_open_rate": safe_div(counts.get("clicks_unique", 0), opens_u),
+            "bounce_rate": safe_div(counts.get("bounced", 0), rec),
+            "unsubscribe_rate": safe_div(counts.get("unsubscribes", 0), rec),
+            "spam_complaint_rate": safe_div(counts.get("spam_complaints", 0), rec),
+            "conversion_rate": safe_div(counts.get("conversions", 0), rec),
+            "delivery_rate": safe_div(counts.get("delivered", 0), rec),
+            "revenue_per_recipient": safe_div(counts.get("conversion_value", 0), rec),
+        }
         enriched.append(
             {
                 "flow_id": fid,
                 "flow_name": meta.get("name"),
                 "tier": meta.get("tier"),
                 "protected": bool(meta.get("protected")),
-                "statistics": values,
+                "statistics": stats,
             }
         )
+    enriched.sort(key=lambda x: -(x["statistics"].get("recipients") or 0))
 
     snapshot = {
         "pulled_at": datetime.now(timezone.utc).isoformat(),
