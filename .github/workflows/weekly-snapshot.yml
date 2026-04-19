@@ -50,7 +50,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m scripts.agent.open_issues --anomalies /tmp/anomalies.json
 
-      - name: Telegram digest (always — green or alert)
+      - name: Telegram — weekly scorecard (flow metrics table)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m scripts.agent.weekly_scorecard
+
+      - name: Telegram — anomalies digest (green or alert)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
