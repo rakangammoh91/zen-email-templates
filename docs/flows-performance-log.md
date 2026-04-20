@@ -58,6 +58,18 @@ _(Log each [RG] → [FINAL] replacement here with pre-swap and post-swap 30d met
 
 ## Weekly snapshots
 
+### Week of 2026-04-20
+
+| Flow | ID | Recipients | Open | Click | Conv | RPR | Δ open vs prior |
+|------|----|-----------:|-----:|------:|-----:|----:|-----------------|
+| AM · AR · Browse Abandonment | `VKsTPF` | 465 | 27.74% | 1.08% | 0.22% | 2.22 | -0.37pp |
+| AM · AR · Welcome | `RpUXJv` | 317 | 24.92% | 0.63% | 0.00% | — | +0.76pp |
+| AM · AR · Referral | `TqHqU2` | 234 | 30.34% | 1.28% | 0.00% | — | +1.44pp |
+| AM · AR · Abandoned Cart | `Xkg5DZ` | 172 | 29.65% | 0.00% | 0.00% | — | -0.51pp |
+| AM · AR · Abandoned Checkout | `Xu8gx8` | 92 | 36.96% | 1.09% | 0.00% | — | +2.98pp |
+| AM · AR · Site-abandonment | `UQqPVR` | 51 | 25.49% | 0.00% | 0.00% | — | +1.35pp |
+| AM · AR · Customer Thank You | `UcxCCH` | 19 | 31.58% | 0.00% | 0.00% | — | -1.75pp |
+
 ### Week of 2026-04-19
 
 | Flow | ID | Recipients | Open | Click | Conv | RPR | Δ open vs prior |
@@ -94,4 +106,9 @@ See "30-day baseline snapshot" above.
 
 _(Anything we decide based on the numbers goes here, dated. One line per insight.)_
 
+- `2026-04-20` (auto-digest)
+  - Biggest open-rate gain: **AM · AR · Abandoned Checkout** +2.98pp (33.98% → 36.96%).
+  - Biggest open-rate drop: **AM · AR · Abandoned Cart** -0.51pp (30.16% → 29.65%).
+  - Biggest RPR gain: **AM · AR · Browse Abandonment** +0.25 SAR (1.97 → 2.22).
+  - Watch: **AM · AR · Site-abandonment** bounce 5.88% (threshold 3.0%) — approaching limit.
 - `2026-04-19` — Baseline captured. Browse Abandoned `VKsTPF` at 29.78% open / 2.81 RPR is the bar `WKnDMV` must clear. Hypothesis: curiosity-gap E2 subject (`مو متأكدة وش يناسبكِ؟`) + Smart Sending OFF should lift opens on mid-flow emails where legacy got suppressed by the 16h dedupe window.
